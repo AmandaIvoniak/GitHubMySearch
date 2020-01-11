@@ -1,0 +1,209 @@
+@import url('https://fonts.googleapis.com/css?family=Lato:300,400,700');
+
+* {
+  box-sizing: border-box;
+}
+
+html, 
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  background: #2f294f;
+}
+
+body {
+  font-family: 'Lato', sans-serif;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+      -ms-flex-align: center;
+          align-items: center;
+  overflow: hidden;
+}
+
+input {
+  font-family: inherit;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  border: 0;
+  border-bottom: 1px solid #AAAAAA;
+  font-size: 16px;
+  color:  #9900ff;
+  border-radius: 0;
+}
+
+input[type="text"],
+input[type="password"] {
+  width: 100%;
+  height: 40px;
+}
+
+button,
+input:focus {
+  outline: 0;
+}
+
+::-webkit-input-placeholder { 
+  font-size: 16px;
+  font-weight: 300;
+  letter-spacing: -0.00933333em;
+}
+
+.form-group {
+  position: relative;
+  padding-top: 15px;
+  margin-top: 10px;
+}
+
+label {
+  position: absolute;
+  top: 0;
+  opacity: 1;
+  -webkit-transform: translateY(5px);
+          transform: translateY(5px);
+  color: #aaa;
+  font-weight: 300;
+  font-size: 13px;
+  letter-spacing: -0.00933333em;
+  transition: all 0.2s ease-out;
+}
+
+input:placeholder-shown  + label {
+  opacity: 0;
+  -webkit-transform: translateY(15px);
+          transform: translateY(15px);
+}
+
+.h1 {
+  color: #fff;
+  opacity: 0.8;
+  font-size: 20px;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.2405em;
+  transition: all 770ms cubic-bezier(0.51, 0.04, 0.12, 0.99);
+  text-align: center;
+  cursor: pointer;
+  position: absolute;
+}
+
+.open .h1 {
+  -webkit-transform: translateX(200px) translateZ(0);
+          transform: translateX(200px) translateZ(0);
+}
+
+.h2 {
+  color: #000;
+  font-size: 20px;
+  letter-spacing: -0.00933333em;
+  font-weight: 600;
+  padding-bottom: 15px;
+}
+
+.login-left {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 770ms cubic-bezier(0.51, 0.04, 0.12, 0.99);
+  overflow: hidden;
+}
+/* torna suave */
+.login-left img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  display: block;
+  transition: all 770ms cubic-bezier(0.51, 0.04, 0.12, 0.99);
+  object-position: left;
+}
+
+.open .login-left canvas {
+  -webkit-transform: translateX(280px) translateZ(0);  
+          transform: translateX(280px) translateZ(0);  
+}
+
+.open .login-left {
+  -webkit-transform: translateX(-400px) translateZ(0);
+          transform: translateX(-400px) translateZ(0);
+} 
+
+.login-right {
+  padding: 40px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 400px;
+  -webkit-transform: translateX(400px) translateZ(0);
+          transform: translateX(400px) translateZ(0);
+  transition: all 770ms cubic-bezier(0.51, 0.04, 0.12, 0.99);
+  background: white;
+  height: 100%;
+
+
+}
+
+.open .login-right {
+  -webkit-transform: translateX(0px) translateZ(0);
+          transform: translateX(0px) translateZ(0);
+}
+.button-area {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 30px;
+}
+
+.btn {
+  font-family: inherit;
+  -webkit-appearance: none;
+  -moz-appearance: none;  
+  background-color: transparent;
+  border: none;
+  border-radius: 2px;
+  height: 40px;
+  display: flex;
+  padding: 0 35px;
+  cursor: pointer;
+  font-size: 16px;
+  text-transform: uppercase;
+  letter-spacing: -0.00933333em;
+}
+
+.btn-primary {
+  color: #fff;
+  background: linear-gradient(to bottom, #9900ff 0%, #9900cc 100%);
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.btn-secondary {
+  color: #9900ff;  
+}
+
+
+#note {
+  position: absolute;
+  color: rgba(249,241,204,1);
+  left: 0;
+  right: 0;
+  bottom: 20px;
+  margin: auto;
+  text-align: center;
+  user-select: none;
+  font-family: Arial;
+}
+
+.titleCss{
+    color: #9900ff !important;  
+}
+
+.tabs .indicator {
+  background: #9900ff !important;  
+}
