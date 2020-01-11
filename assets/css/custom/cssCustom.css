@@ -1,0 +1,13 @@
+.position{
+    min-height: calc(100vh - 83px) !important;
+}
+
+header, main, footer {
+    padding-left: 300px;
+  }
+
+  @media only screen and (max-width : 992px) {
+    header, main, footer {
+      padding-left: 0;
+    }
+  }
