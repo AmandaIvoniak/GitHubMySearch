@@ -1,11 +1,12 @@
-<body style="min-height:calc(100vh - 83px) !important;">
+<?php include 'assets/inc/header.php'; ?>
     <div class="login-wrapper" style="min-height:calc(100vh - 83px) !important;">
+      
       <div class="login-left">
         <canvas id="canvas"></canvas>
-        <div class="h1">MadeiraMadeira</div>
+        <div class="h1">GitHubMySearch</div>
       </div>
       <div class="login-right">
-        <h1>GitHubTags</h1>
+        <h1>GitHubMySearch</h1>
         <ul id="tabs-swipe-demo" class="tabs">
           <li class="tab col s6"><a  href="#login" class="active titleCss">LOGIN</a></li>
           <!-- <li class="tab col s6"><a class=" titleCss" href="#contato">Contato</a></li> -->
@@ -31,3 +32,4 @@
         </div>
       </div>
     </div>
+<?php include 'assets/inc/scripts.php'; ?>

@@ -11,18 +11,17 @@ class Login extends CI_Controller {
     public function index() {
 
         if($this->session->userdata('id_user')){
-            $this->template->show('home.php');
+            $this->load->view('home.php');
         }else{    
             $data = array(
                 'scripts' => array(
-                    'jsLogin.js',
-                    'jsBackground.js'
+                    'jsLogin.js'
                     ),
                 'styles' => array(
                     'cssLogin.css'
                     ),
-            );        
-            $this->template->show('login.php', $data);
+            );  
+            $this->load->view('login.php', $data);
         }
     }
 

@@ -1,4 +1,4 @@
-const BASE_URL = 'localhost/madeiraMadeira/';
+const BASE_URL = 'localhost/GitHubMySearch/';
 
 $(document).ready(function(){
     $('.tabs').tabs();
