@@ -1,19 +1,32 @@
 .position{
     min-height: calc(100vh - 83px) !important;
+    padding-left: 300px;
 }
 
-header, main, footer {
-    padding-left: 300px;
-  }
+.page-footer {
+  padding: 0;
+  padding-left: 300px;
+}
 
 @media only screen and (max-width : 992px) {
-  header, main, footer {
+  .position, .page-footer {
     padding-left: 0;
-  }
+  }  
 }
 
+.sidenav {
+  margin-top: 64px;
+}
+
+.navbar-fixed{
+  z-index: 1000;
+}
 
 .cardCustom{
   padding: 10px;
+  margin: 10px;
+}
 
+.cardCustom .row{
+  margin-bottom: 0px !important;
 }
