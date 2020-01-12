@@ -17,11 +17,11 @@ openLoginRight.addEventListener('click', function(){
 $("#login").submit(function(e) {
     e.preventDefault();
     var email;
-    var senha;
+    var password;
 
     for(var valor of $(this).serializeArray()){
         if(valor.name ==='email' ? email = valor.value : '');        
-        senha = (valor.name == 'senha') && valor.value;
+        password = (valor.name == 'password') && valor.value;
     }
     
  $.ajax({
@@ -29,13 +29,11 @@ $("#login").submit(function(e) {
     url: "login/ajax_login",
     data: {
       email: email,
-      senha: senha
+      password: password
     },
     success: function(result){
-      if(result != 'false'){
-        window.location = BASE_URL + 'login';
-      }else{
-          alert("Senha incorreta!");
+      if(result == 'true'){
+        window.location ='home';
       }
     }
   }); 
@@ -46,12 +44,7 @@ $("#register").submit(function(e) {
     var name;
     var email;
     var password;
-    var password;
-
-    for(var valor of $(this).serializeArray()){
-        if(valor.name ==='email' ? email = valor.value : '');        
-        senha = (valor.name == 'senha') && valor.value;
-    }
+    var passwordConfirm;
 
     for(var valor of $(this).serializeArray()){
       if(valor.name == 'name' ? name = valor.value : '');
@@ -70,10 +63,8 @@ $("#register").submit(function(e) {
       passwordConfirm: passwordConfirm
     },
     success: function(result){
-      if(result != 'false'){
-        // window.location = BASE_URL + 'home';
-      }else{
-          alert("Senha incorreta!");
+      if(result == 'false'){
+        alert("Senha incorreta!");
       }
     }
   }); 

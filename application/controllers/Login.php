@@ -8,10 +8,10 @@ class Login extends CI_Controller {
         $this->load->library('session');
         $this->load->model('users_model');
     }
-    public function index() {
 
+    public function index() {
         if($this->session->userdata('id_user')){
-            $this->load->view('home.php');
+            header('Location: home');
         }else{    
             $data = array(
                 'scripts' => array(
@@ -26,8 +26,9 @@ class Login extends CI_Controller {
     }
 
     public function logoff(){
+        $this->load->library('session');
         $this->session->sess_destroy();
-        header('Location: login.php');
+        echo 'true';
     }
 
     public function ajax_login() {
@@ -40,7 +41,7 @@ class Login extends CI_Controller {
         
         $this->load->model('users_model');
         $result = $this->users_model->get_user_data($email);
-        echo $result;
+
         if($result){            
             $id_user = $result->id_user;
             $passwordHash = $result->password;
@@ -66,11 +67,7 @@ class Login extends CI_Controller {
         $password = $this->input->post('password');
         $passwordConfirm = $this->input->post('passwordConfirm');
         
-        echo $name,$email,$password,$passwordConfirm;
-
-
         if($password === $passwordConfirm){
-            echo 'ta ok?';
             //$this->session->set_userdata('id_user', $id_user);
             $this->load->model('users_model');
             $result = $this->users_model->insert_user_data($name, $email, $password);

@@ -4,15 +4,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Tags extends CI_Controller{
 
     public function index(){
-        $data = array(
-            'scripts' => array(
-                'jsNavandSideBar.js'
-            ),
-            'styles' => array(
-                'cssCustom.css'
+        if($this->session->userdata('id_user')){
+            $data = array(
+                'scripts' => array(
+                    'jsNavandSideBar.js'
                 ),
-        );  
-        $this->load->view('tags.php',$data);
-
+                'styles' => array(
+                    'cssCustom.css'
+                    ),
+            );  
+            $this->load->view('tags.php', $data);
+        } else {
+			header('Location: login');
+		}
     }
 }
