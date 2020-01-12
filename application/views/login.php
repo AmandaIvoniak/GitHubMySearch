@@ -6,15 +6,15 @@
         <div class="h1">GitHubMySearch</div>
       </div>
       <div class="login-right">
-        <h1>GitHubMySearch</h1>
+        <h4>GitHubMySearch</h4>
         <ul id="tabs-swipe-demo" class="tabs">
           <li class="tab col s6"><a  href="#login" class="active titleCss">LOGIN</a></li>
           <li class="tab col s6"><a  href="#register" class="active titleCss">CADASTRO</a></li>
         </ul>
         <div class="tabs-content carousel carousel-slider">
           <!-- ===================LOGIN ============ -->
-          <form action="">
-            <div id="login" class=" carousel-item active" 
+          <form action="" id="login">
+            <div  class=" carousel-item active" 
             style="z-index: 0; opacity: 1; visibility: visible;">
               <div class="form-group">
                 <input type="text" name="email" id="email" placeholder="E-mail" required>
@@ -30,8 +30,8 @@
             </div>
           </form>
           <!-- ===================Cadastro ============ -->
-          <form action="">
-            <div id="register" class=" carousel-item active" 
+          <form action="" id="register" >
+            <div class="carousel-item active" 
             style="z-index: 0; opacity: 1; visibility: visible;">
             <div class="form-group">
                 <input type="text" name="name" id="name" placeholder="Nome" required>

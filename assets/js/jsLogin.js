@@ -14,7 +14,7 @@ openLoginRight.addEventListener('click', function(){
     loginWrapper.classList.toggle('open'); 
 });
 
-$("form").submit(function(e) {
+$("#login").submit(function(e) {
     e.preventDefault();
     var email;
     var senha;
@@ -34,6 +34,44 @@ $("form").submit(function(e) {
     success: function(result){
       if(result != 'false'){
         window.location = BASE_URL + 'login';
+      }else{
+          alert("Senha incorreta!");
+      }
+    }
+  }); 
+});
+
+$("#register").submit(function(e) {
+    e.preventDefault();
+    var name;
+    var email;
+    var password;
+    var password;
+
+    for(var valor of $(this).serializeArray()){
+        if(valor.name ==='email' ? email = valor.value : '');        
+        senha = (valor.name == 'senha') && valor.value;
+    }
+
+    for(var valor of $(this).serializeArray()){
+      if(valor.name == 'name' ? name = valor.value : '');
+      if(valor.name == 'email' ? email = valor.value : '');
+      if(valor.name == 'password' ? password = valor.value : '');
+      if(valor.name == 'passwordConfirm' ? passwordConfirm = valor.value : '');
+    }
+    
+ $.ajax({
+    method: "POST",
+    url: "login/ajax_insert",
+    data: {
+      name: name,
+      email: email,
+      password: password,
+      passwordConfirm: passwordConfirm
+    },
+    success: function(result){
+      if(result != 'false'){
+        // window.location = BASE_URL + 'home';
       }else{
           alert("Senha incorreta!");
       }
