@@ -20,8 +20,8 @@ $("#login").submit(function(e) {
     var password;
 
     for(var valor of $(this).serializeArray()){
-        if(valor.name ==='email' ? email = valor.value : '');        
-        password = (valor.name == 'password') && valor.value;
+      if(valor.name == 'name_user' ? name_user = valor.value : '');
+      if(valor.name == 'email' ? email = valor.value : '');
     }
     
  $.ajax({

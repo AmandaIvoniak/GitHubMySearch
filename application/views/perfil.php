@@ -3,16 +3,16 @@
 <div class="position ">
     <div class="card cardCustom">
         <div class="row">
-            <form class="col s12">
+            <form class="col s12" id="formEdit">
                 <div class="row">
                     <div class="input-field col s6">
                         <i class="material-icons prefix">account_circle</i>
-                        <input id="name_user" name="name_user" type="text">
+                        <input placeholder="Placeholder" id="name_user" name="name_user" type="text">
                         <label for="name_user">Nome</label>
                     </div>
                     <div class="input-field col s6">
                         <i class="material-icons prefix">email</i>
-                        <input id="email" name="email" type="email">
+                        <input  placeholder="Placeholder" id="email" name="email" type="email">
                         <label for="email">E-Mail</label>
                     </div>
                 </div>
@@ -29,7 +29,7 @@
                     </div>
                 </div>                   
                 <div class="input-field col s12">
-                <button type="submit" id="editBtn" class="right waves-effect waves-light btn deep-purple">Salvar</button>
+                <button type="submit" id="" class="editBtn right waves-effect waves-light btn deep-purple">Salvar</button>
                 </div>                    
             </form>
         </div>

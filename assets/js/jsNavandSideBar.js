@@ -4,12 +4,11 @@ $(document).ready(function(){
 });
 
 $("#logoff").click(function(e) {
-    e.preventDefault();    
     $.ajax({
       method: "POST",
       url: "login/logoff",
-      success: resp => {
-        if(resp == 'true'){
+      success: function(result){
+        if(result == 'true'){
           window.location.href = 'login';
         }
       }
