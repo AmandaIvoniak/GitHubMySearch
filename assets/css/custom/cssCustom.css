@@ -30,3 +30,12 @@
 .cardCustom .row{
   margin-bottom: 0px !important;
 }
+
+.brand-logo{
+  padding-left: 10px !important;
+}
+
+.tags{
+  margin-top: -17px !important;
+  margin-bottom: -3px !important;
+}

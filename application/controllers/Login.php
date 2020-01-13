@@ -39,7 +39,6 @@ class Login extends CI_Controller {
         $email = $this->input->post('email');
         $password = $this->input->post('password');
         
-        $this->load->model('users_model');
         $result = $this->users_model->get_user_data($email);
 
         if($result){            
@@ -69,7 +68,6 @@ class Login extends CI_Controller {
         
         if($password === $passwordConfirm){
             //$this->session->set_userdata('id_user', $id_user);
-            $this->load->model('users_model');
             $result = $this->users_model->insert_user_data($name, $email, $password);
             echo 'true';
         }else{
