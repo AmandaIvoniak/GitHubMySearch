@@ -21,8 +21,6 @@ class Users_model extends CI_Model{
     }
 
     public function insert_user_data($table, $data){
-        $this->db->insert($table, $data); 
-
         if($this->db->insert($table, $data)){
             return 'true';
         }else{

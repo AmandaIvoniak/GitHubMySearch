@@ -1,3 +1,4 @@
+const BASE_URL = 'localhost/GitHubMySearch/';
 $(document).ready(function(){
     $('select').formSelect();
 

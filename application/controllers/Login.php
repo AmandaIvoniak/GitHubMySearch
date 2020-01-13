@@ -64,6 +64,7 @@ class Login extends CI_Controller {
 
         if($data['password'] === $data['passwordConfirm']){
             unset($data['passwordConfirm']);
+            $data['password'] = md5($data['password']);
             $this->users_model->insert_user_data('users', $data);
             $result = $this->users_model->get_user_data($data['email']);
 
