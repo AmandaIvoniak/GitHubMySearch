@@ -41,7 +41,7 @@ class Login extends CI_Controller {
         
         $result = $this->users_model->get_user_data($email);
 
-        if($result){            
+        if($result){
             $id_user = $result->id_user;
             $passwordHash = $result->password;
 
@@ -60,16 +60,18 @@ class Login extends CI_Controller {
         if(!$this->input->is_ajax_request()){
             exit('Acesso não permitido!');
         }
+        $data = $this->input->post();
 
-        $name = $this->input->post('name');
-        $email = $this->input->post('email');
-        $password = $this->input->post('password');
-        $passwordConfirm = $this->input->post('passwordConfirm');
-        
-        if($password === $passwordConfirm){
-            //$this->session->set_userdata('id_user', $id_user);
-            $result = $this->users_model->insert_user_data($name, $email, $password);
-            echo 'true';
+        if($data['password'] === $data['passwordConfirm']){
+            unset($data['passwordConfirm']);
+            $this->users_model->insert_user_data('users', $data);
+            $result = $this->users_model->get_user_data($data['email']);
+
+            if($result){            
+                $id_user = $result->id_user;                
+                $this->session->set_userdata('id_user', $id_user);
+                echo 'true';
+            }            
         }else{
             echo 'false';
         }

@@ -20,14 +20,11 @@ class Users_model extends CI_Model{
         }
     }
 
-    public function insert_user_data($name_user, $email, $password){
+    public function insert_user_data($table, $data){
+        $this->db->insert($table, $data); 
 
-        $this->db->insert('name_user, email, password')->from('users');
-
-        $result = $this->db->set();
-        var_dump($result);
-        if($result->num_rows() > 0){
-            return $result->row();
+        if($this->db->insert($table, $data)){
+            return 'true';
         }else{
             return NULL;
         }

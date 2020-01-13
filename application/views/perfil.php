@@ -7,8 +7,8 @@
                 <div class="row">
                     <div class="input-field col s6">
                         <i class="material-icons prefix">account_circle</i>
-                        <input id="name" name="name" type="text">
-                        <label for="name">Nome</label>
+                        <input id="name_user" name="name_user" type="text">
+                        <label for="name_user">Nome</label>
                     </div>
                     <div class="input-field col s6">
                         <i class="material-icons prefix">email</i>

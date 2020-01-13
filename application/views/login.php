@@ -34,8 +34,8 @@
             <div class="carousel-item active" 
             style="z-index: 0; opacity: 1; visibility: visible;">
             <div class="form-group">
-                <input type="text" name="name" id="name" placeholder="Nome" required>
-                <label for="name">Nome</label>    
+                <input type="text" name="name_user" id="name_user" placeholder="Nome" required>
+                <label for="name_user">Nome</label>    
               </div>
               <div class="form-group">
                 <input type="text" name="email" id="email" placeholder="E-mail" required>

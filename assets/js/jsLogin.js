@@ -41,13 +41,13 @@ $("#login").submit(function(e) {
 
 $("#register").submit(function(e) {
     e.preventDefault();
-    var name;
+    var name_user;
     var email;
     var password;
     var passwordConfirm;
 
     for(var valor of $(this).serializeArray()){
-      if(valor.name == 'name' ? name = valor.value : '');
+      if(valor.name == 'name_user' ? name_user = valor.value : '');
       if(valor.name == 'email' ? email = valor.value : '');
       if(valor.name == 'password' ? password = valor.value : '');
       if(valor.name == 'passwordConfirm' ? passwordConfirm = valor.value : '');
@@ -57,7 +57,7 @@ $("#register").submit(function(e) {
     method: "POST",
     url: "login/ajax_insert",
     data: {
-      name: name,
+      name_user: name_user,
       email: email,
       password: password,
       passwordConfirm: passwordConfirm
@@ -65,6 +65,8 @@ $("#register").submit(function(e) {
     success: function(result){
       if(result == 'false'){
         alert("Senha incorreta!");
+      }else if(result === 'true'){
+        window.location ='home';
       }
     }
   }); 

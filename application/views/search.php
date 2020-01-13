@@ -19,13 +19,13 @@
                         </label>
                     </p>
                 </div>
-                <div class="col s2">
+                <div class="col s2 ">
                     <p>
-                        <label>
+                        <label style="">
                             <input name="data" type="radio" checked/>
                             <span>Desc</span>
                         </label>
-                        <label>
+                        <label style=" ">
                             <input name="data" type="radio"/>
                             <span>Asc</span>
                         </label>
