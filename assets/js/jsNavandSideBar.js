@@ -6,7 +6,7 @@ $(document).ready(function(){
 $("#logoff").click(function(e) {
     $.ajax({
       method: "POST",
-      url: "login/logoff",
+      url: "login/ajax_logoff",
       success: function(result){
         if(result == 'true'){
           window.location.href = 'login';

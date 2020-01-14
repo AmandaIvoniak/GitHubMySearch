@@ -20,8 +20,8 @@ $("#login").submit(function(e) {
     var password;
 
     for(var valor of $(this).serializeArray()){
-      if(valor.name == 'name_user' ? name_user = valor.value : '');
       if(valor.name == 'email' ? email = valor.value : '');
+      if(valor.name == 'password' ? password = valor.value : '');
     }
     
  $.ajax({
@@ -55,7 +55,7 @@ $("#register").submit(function(e) {
     
  $.ajax({
     method: "POST",
-    url: "login/ajax_insert",
+    url: "user/ajax_insert",
     data: {
       name_user: name_user,
       email: email,
