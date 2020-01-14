@@ -26,13 +26,22 @@ class Users_model extends CI_Model{
         }
     }
 
-    public function update_user_data($table, $data){
-        $this->db->update($table, $data)->from($table)->where('user_id', $data['id']); 
+    public function update_user_data($table, $data, $id){
+        $this->db->where('id_user', $id);
+        $this->db->update($table, $data);
+    }
 
-    // if($this->db->insert($table, $data)){
-    //     return 'true';
-    // }else{
-    //     return NULL;
-    // }
+    public function duplicate_user_data($field, $data, $id = NULL){
+
+        $result = $this->users_model->get_user_data($field, $data);
+
+        var_dump($result);
+        if($id != $result->id_user && $result === NULL){
+            return false;
+        }else{
+            return true;
+        }
+        $this->db->from($table);
+        $this->db->where('id_user', $id);
     }
 }

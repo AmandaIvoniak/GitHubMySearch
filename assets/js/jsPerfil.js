@@ -8,7 +8,7 @@ $(document).ready(function(){
             $('#email').val(result.email);
             $('.editBtn').attr('id', result.id_user);
         }
-      })
+      });
 });
 
 

@@ -7,33 +7,33 @@
                 <div class="col s6">
                     <div class="input-field col s12">
                         <i class="material-icons prefix">search</i>
-                        <input id="search" type="text">
+                        <input id="search" name="search" type="text">
                         <label for="search">Pesquisar por repositório</label>
                     </div>
                 </div>
                 <div class="col s2">
                     <p>
                         <label style=" top:30px; position:absolute;">
-                            <input type="checkbox"/>
+                            <input name="star" type="checkbox"/>
                             <span>Estrelas</span>
                         </label>
                     </p>
                 </div>
-                <div class="col s2 ">
-                    <p>
+                <!-- <div class="col s2">
+                    <p name="data">
                         <label style="">
-                            <input name="data" type="radio" checked/>
+                            <input  type="radio" checked/>
                             <span>Desc</span>
                         </label>
                         <label style=" ">
-                            <input name="data" type="radio"/>
+                            <input  type="radio"/>
                             <span>Asc</span>
                         </label>
                     </p>
-                </div>
+                </div> -->
                 <div class="col s2">
                     <div class="input-field col s12">
-                        <button type="submit" id="editBtn" class="right waves-effect waves-light btn deep-purple">Salvar</button>
+                        <button type="submit" id="searchBtn" class="right waves-effect waves-light btn deep-purple">Salvar</button>
                     </div>    
                 </div>
             </div>
@@ -41,7 +41,8 @@
     </div>
     <div class="cardCustom">
         <ul class="collection">
-            <li class="collection-item avatar">
+        <div id="listSearch">
+        <li class="collection-item avatar">
                 <i class="material-icons circle">folder</i>    
                 <!-- <img src="images/yuna.jpg" alt="" class="circle"> -->
                 <div class="row">
@@ -64,73 +65,9 @@
                     </div>
                 </div>                
             </li>
-            <li class="collection-item avatar">
-                <i class="material-icons circle">folder</i>    
-                <!-- <img src="images/yuna.jpg" alt="" class="circle"> -->
-                <div class="row">
-                    <div class="col s6">
-                        <span class="title">Nome projeto</span>
-                        <p>Descrição</p>
-                        <i class="material-icons">grade</i>
-                    </div>
-                    <div class="col s6">
-                        <p class="right" >Ultima atualização</p>                    
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col s6">
-                        <div class="chips chips-autocomplete"></div>
-                    </div>
-                    <div class="col s6">
-                        <a class="btn-floating btn-large waves-effect waves-light purple right">
-                        <i class="material-icons">check</i></a>
-                    </div>
-                </div>                
-            </li><li class="collection-item avatar">
-                <i class="material-icons circle">folder</i>    
-                <!-- <img src="images/yuna.jpg" alt="" class="circle"> -->
-                <div class="row">
-                    <div class="col s6">
-                        <span class="title">Nome projeto</span>
-                        <p>Descrição</p>
-                        <i class="material-icons">grade</i>
-                    </div>
-                    <div class="col s6">
-                        <p class="right" >Ultima atualização</p>                    
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col s6">
-                        <div class="chips chips-autocomplete"></div>
-                    </div>
-                    <div class="col s6">
-                        <a class="btn-floating btn-large waves-effect waves-light purple right">
-                        <i class="material-icons">check</i></a>
-                    </div>
-                </div>                
-            </li><li class="collection-item avatar">
-                <i class="material-icons circle">folder</i>    
-                <!-- <img src="images/yuna.jpg" alt="" class="circle"> -->
-                <div class="row">
-                    <div class="col s6">
-                        <span class="title">Nome projeto</span>
-                        <p>Descrição</p>
-                        <i class="material-icons">grade</i>
-                    </div>
-                    <div class="col s6">
-                        <p class="right" >Ultima atualização</p>                    
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col s6">
-                        <div class="chips chips-autocomplete"></div>
-                    </div>
-                    <div class="col s6">
-                        <a class="btn-floating btn-large waves-effect waves-light purple right">
-                        <i class="material-icons">check</i></a>
-                    </div>
-                </div>                
-            </li>
+            </div>
+            
+            
         </ul>
     </div>
 </div>
