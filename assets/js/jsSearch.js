@@ -33,6 +33,7 @@ $('#searchForm').submit(function(e){
     method: "GET",
     url: "https://api.github.com/search/repositories?"+search,    
     success: function(result){
+
         respSearch = result.items;
         result = result.items;
          
@@ -67,6 +68,20 @@ $('#searchForm').submit(function(e){
   });
 })
 
+$('#addRepository').click(function(){
+    var params = respSearch.length > positionScroll ? positionScroll+10 : respSearch.length;
+
+    for (i = positionScroll; i < params; i++) {
+        createSearchList(i, respSearch[i].full_name, respSearch[i].id, respSearch[i].updated_at, respSearch[i].description, respSearch[i].stargazers_count);
+        positionScroll++;
+    }
+
+    if(respSearch.length = positionScroll){
+        positionScroll = 0;
+        $('#addRepository').addClass('hide');
+    }
+})
+
 function createSearchList(i, name, id, update, description, stars){
     var listSearch = document.getElementById("listSearch");
     if(i === 0 ? listSearch.innerHTML = '': '');
@@ -86,7 +101,16 @@ function createSearchList(i, name, id, update, description, stars){
                             '</div>'+
                             '<div class="row">'+
                                 '<div class="col s6">'+
-                                    '<div name="tag" id="'+id+'" class=" chips chips-autocomplete"></div>'+
+                                '<div class="input-field col s12">'+
+                                    '<select multiple id="'+id+'">'+
+                                    '<option value="" disabled selected>Choose your option</option>'+
+                                    '<option value="1">Option 1</option>'+
+                                    '<option value="2">Option 2</option>'+
+                                    '<option value="3">Option 3</option>'+
+                                    '</select>'+
+                                    '<label>Materialize Multiple Select</label>'+
+                                '</div>'+
+                                    '<div name="tag"  class=" chips chips-autocomplete"></div>'+
                                 '</div>'+
                                 '<div class="col s6">'+
                                     '<a onclick=saveTag('+id+','+i+'); class="saveTagBtn btn-floating btn-large waves-effect waves-light purple right">'+
@@ -100,19 +124,7 @@ function createSearchList(i, name, id, update, description, stars){
 
 function autocomplete(){}
 
-$('#addRepository').click(function(){
-    var params = respSearch.length > positionScroll ? positionScroll+10 : respSearch.length;
 
-    for (i = positionScroll; i < params; i++) {
-        createSearchList(i, respSearch[i].full_name, respSearch[i].id, respSearch[i].updated_at, respSearch[i].description, respSearch[i].stargazers_count);
-        positionScroll++;
-    }
-
-    if(respSearch.length = positionScroll){
-        positionScroll = 0;
-        $('#addRepository').addClass('hide');
-    }
-})
 
 
 
@@ -168,3 +180,4 @@ function saveTag(id, index){
     }
  
 };
+

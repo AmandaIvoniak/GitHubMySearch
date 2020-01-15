@@ -13,8 +13,8 @@ class Home extends CI_Controller {
 					'cssCustom.css'
 				),
 				'scripts' => array(
-					'jsHome.js',
-					'jsNavandSideBar.js'
+					'jsNavandSideBar.js',
+					'jsHome.js'
 				));
 
 			$this->load->view('home', $data);

@@ -7,7 +7,10 @@
                 <ul class="collection with-header" id="tagList">   
                     <li class="collection-header"><h5>Suas Tags</h5></li>
                 </ul>
-                <a class="btn-floating btn-large waves-effect waves-light green right">
+                <a id="inputTag" class="btn-floating btn-large waves-effect waves-light green right">
+                    <i class="material-icons">add</i>
+                </a>
+                <a id="registerTag" class="hide btn-floating btn-large waves-effect waves-light green right">
                     <i class="material-icons">check</i>
                 </a>
             </div>            

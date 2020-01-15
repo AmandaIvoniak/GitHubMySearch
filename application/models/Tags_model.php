@@ -20,8 +20,6 @@ class Tags_model extends CI_Model{
     }
 
     public function insert_tags_data($table, $data){
-        $this->db->insert($table, $data); 
-
         if($this->db->insert($table, $data)){
             return 'true';
         }else{
@@ -30,14 +28,12 @@ class Tags_model extends CI_Model{
     }
 
     public function delete_tags_data($table, $data){
-        $this->db->delete($table, $data)->from($table)->where(); 
+        $this->db->where('user_id', $data['user_id']); 
+        $this->db->where('tags_id', $data['tags_id']); 
+        $result = $this->db->delete($table);
 
-        if($this->db->insert($table, $data)){
-            return 'true';
-        }else{
-            return NULL;
-        }
-    }
+        return $result;
+   }
 
     // public function update_tags_data($table, $data){
     //     $this->db->update($table, $data); 
