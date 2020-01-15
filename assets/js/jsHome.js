@@ -33,6 +33,7 @@ function createTags(i, user_id, tags_id, name_tag){
 }
 
 
+
 function deleteTags(tags_id) {
     user_id = $('#'+tags_id).attr('user_id');
     name_tag = $('#'+tags_id).val();
@@ -56,13 +57,13 @@ function deleteTags(tags_id) {
 
 $('#inputTag').click(function(){    
     var tagList = document.getElementById("tagList");
-    tagList.innerHTML += '<li class="collection-item">'+
+    tagList.innerHTML += '<li class="collection-item newitem">'+
                             '<div class="row valign-wrapper">'+
                                 '<div class="col s6 left">'+
                                     '<input type="text" class="withoutTag">'+
                                 '</div>'+
-                                '<div class=" col s6">'+
-                                    '<a class="hide" href="javascript:void(0)"><i class="iconColor material-icons right">delete</i></a>'+
+                                '<div class="col s6">'+
+                                    '<a onclick="close();" href="javascript:void(0);"><i class="iconColor material-icons right">close</i></a>'+
                                 '</div>'+
                             '</div>'+
                         '</li>';
@@ -71,6 +72,11 @@ $('#inputTag').click(function(){
     $('#registerTag').removeClass('hide');
 });
 
+function close(){
+    console.log('oioioioioioioioioioioioioioiooioioioioioioo');
+    // var newitem = document.getElementsByClassName('newitem');
+    // newitem.innerHTML = '';
+};
 
 $('#registerTag').click(function(){
     var tag = $('#tagList').find('.withoutTag').val();

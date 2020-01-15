@@ -5,19 +5,6 @@ $(document).ready(function(){
 
 })
 
-// $('[name="tag"]').click(function(){
-//     console.log('oi')
-//     console.log(this)
-
-//   //$('.saveTagBtn').removeClass('hide');
-// })
-// $('#tag').focusout(function(){
-//   if($('#tag').val() === ''){
-//   $('#saveTag').addClass('hide');
-//   $('#tag').chip('data');
-// }
-// })
-
 $('#searchForm').submit(function(e){
   e.preventDefault();
   var search;
@@ -50,20 +37,7 @@ $('#searchForm').submit(function(e){
         }
         
         positionScroll = result.length === positionScroll ? 0 : positionScroll;
-
         $('select').formSelect();
-        $('.chips').chips();
-        $('.chips-autocomplete').chips({
-            autocompleteOptions: {
-            data: {
-                'Apple': null,
-                'Microsoft': null,
-                'Google': null
-            },
-            limit: Infinity,
-            minLength: 1
-            }
-        });
     }
   });
 })
@@ -101,8 +75,8 @@ function createSearchList(i, name, id, update, description, stars){
                             '</div>'+
                             '<div class="row">'+
                                 '<div class="col s6">'+
-                                '<div class="input-field col s12">'+
-                                    '<select multiple id="'+id+'">'+
+                                '<div class="input-field col s12" name="tag" id="'+id+'">'+
+                                    '<select multiple>'+
                                     '<option value="" disabled selected>Choose your option</option>'+
                                     '<option value="1">Option 1</option>'+
                                     '<option value="2">Option 2</option>'+
@@ -110,7 +84,7 @@ function createSearchList(i, name, id, update, description, stars){
                                     '</select>'+
                                     '<label>Materialize Multiple Select</label>'+
                                 '</div>'+
-                                    '<div name="tag"  class=" chips chips-autocomplete"></div>'+
+                                    '<div   class=" chips chips-autocomplete"></div>'+
                                 '</div>'+
                                 '<div class="col s6">'+
                                     '<a onclick=saveTag('+id+','+i+'); class="saveTagBtn btn-floating btn-large waves-effect waves-light purple right">'+
@@ -122,20 +96,7 @@ function createSearchList(i, name, id, update, description, stars){
 
 
 
-function autocomplete(){}
-
-
-
-
-
-
-
-
-
-
-
-
-
+function getTags(){}
 
 
 
