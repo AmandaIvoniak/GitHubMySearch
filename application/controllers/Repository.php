@@ -6,7 +6,7 @@ class repository extends CI_Controller{
 	public function __construct() {
         parent::__construct();
         $this->load->model('repository_model');
-
+        $this->load->library('session');
     }
 
     public function index(){
@@ -26,12 +26,15 @@ class repository extends CI_Controller{
 
     public function ajax_insert() {
         if(!$this->input->is_ajax_request() ? exit('Acesso não permitido!') : '');
-
         $data = $this->input->post();
-        // $this->repository_model->insert_tags_data('users', $data);
-        // if($result){
-        //     echo 'true';
-        // }
+
+        $user = $this->session->userdata('id_user');
+        $data['id_user'] =  $user;
+
+        $result = $this->repository_model->insert_repository_data('repository', $data);
+        if($result){
+            echo 'true';
+        }
     }
 
     public function ajax_update() {

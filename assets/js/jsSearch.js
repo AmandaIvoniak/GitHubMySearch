@@ -82,34 +82,35 @@ function createSearchList(i, name, id, update, description, stars){
                             '</li>';
 }
 
-
-
 function saveTag(id, index){
-
     if(respSearch[index].id === id){
-    var tagsArray = M.Chips.getInstance($('#'+id)).chipsData;
-    var tags = [];
-    tagsArray.forEach(element => {
-        tags.push(element.tag);        
-    });
+      var tagsArray = M.Chips.getInstance($('#'+id)).chipsData;
+      if(tagsArray.length > 0){
+        var tags = [];
+        tagsArray.forEach(element => {
+            tags.push(element.tag);        
+        });
 
-    $.ajax({
-        method: "POST",
-        url: "repository/ajax_insert",
-        data: {
-          rep_id: respSearch[index].id,
-          name: respSearch[index].full_name,
-          description: respSearch[index].description,
-          stars: respSearch[index].stargazers_count,
-          update:respSearch[index].updated_at,
-          tags: JSON.stringify(tags)
-        },
-        success: function(result){
-          if(result == 'true'){
-            // window.location ='home';
-          }
-        }
-      }); 
+        $.ajax({
+            method: "POST",
+            url: "repository/ajax_insert",
+            data: {
+              rep_id: respSearch[index].id,
+              name: respSearch[index].full_name,
+              description: respSearch[index].description,
+              stars: respSearch[index].stargazers_count,
+              updateDate:respSearch[index].updated_at,
+              tags: JSON.stringify(tags)
+            },
+            success: function(result){
+              if(result == 'true'){
+                alert('Cadastrado com sucesso')
+              }
+            }
+          }); 
+      }else{
+        alert("por favor preencha uma tag")
+      }
     }
  
 };

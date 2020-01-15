@@ -19,9 +19,7 @@ class Repository_model extends CI_Model{
         }
     }
 
-    public function insert_tags_data($table, $data){
-        $this->db->insert($table, $data); 
-
+    public function insert_repository_data($table, $data){
         if($this->db->insert($table, $data)){
             return 'true';
         }else{
