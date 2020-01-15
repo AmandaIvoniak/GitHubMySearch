@@ -44,6 +44,8 @@
             <div id="listSearch"></div>
         </ul>
     </div>
+    <a id="addRepository" class="hide center btn-floating btn-large waves-effect waves-light purple">
+    <i class="material-icons">add</i></a>
 </div>
 <?php include 'assets/inc/footer.php'; ?>
 <?php include 'assets/inc/scripts.php'; ?>

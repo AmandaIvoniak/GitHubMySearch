@@ -16,10 +16,10 @@
             <div class="card cardCustom">
                 <ul class="collection with-header">
                     <li class="collection-header"><h4>Relatórios de repositório</h4></li>
-                    <li class="collection-item"><div>Nome do projeto<a href="#!" class="secondary-content"><i class="iconColor material-icons">send</i></a></div></li>
-                    <li class="collection-item"><div>Nome do projeto<a href="#!" class="secondary-content"><i class="material-icons">send</i></a></div></li>
-                    <li class="collection-item"><div>Nome do projeto<a href="#!" class="secondary-content"><i class="material-icons">send</i></a></div></li>
-                    <li class="collection-item"><div>Nome do projeto<a href="#!" class="secondary-content"><i class="material-icons">send</i></a></div></li>
+                    <li class="collection-item truncate"><div>Nome do projeto<a href="#!" class="secondary-content"><i class="iconColor material-icons">send</i></a></div></li>
+                    <li class="collection-item truncate"><div>Nome do projeto<a href="#!" class="secondary-content"><i class="material-icons">send</i></a></div></li>
+                    <li class="collection-item truncate"><div>Nome do projeto<a href="#!" class="secondary-content"><i class="material-icons">send</i></a></div></li>
+                    <li class="collection-item truncate"><div>Nome do projeto<a href="#!" class="secondary-content"><i class="material-icons">send</i></a></div></li>
                 </ul>
             </div>
         </div>

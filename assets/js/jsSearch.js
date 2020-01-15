@@ -1,15 +1,16 @@
 const BASE_URL = 'localhost/GitHubMySearch/';
 var respSearch = 0;
+var positionScroll = 0;
 $(document).ready(function(){
 
 })
 
-$('[name="tag"]').click(function(){
-    console.log('oi')
-    console.log(this)
+// $('[name="tag"]').click(function(){
+//     console.log('oi')
+//     console.log(this)
 
-  //$('.saveTagBtn').removeClass('hide');
-})
+//   //$('.saveTagBtn').removeClass('hide');
+// })
 // $('#tag').focusout(function(){
 //   if($('#tag').val() === ''){
 //   $('#saveTag').addClass('hide');
@@ -20,6 +21,7 @@ $('[name="tag"]').click(function(){
 $('#searchForm').submit(function(e){
   e.preventDefault();
   var search;
+  var params = 0;
 
   for(var valor of $(this).serializeArray()){
     if(valor.name == 'search' ? search = 'q='+valor.value : '');
@@ -31,11 +33,23 @@ $('#searchForm').submit(function(e){
     method: "GET",
     url: "https://api.github.com/search/repositories?"+search,    
     success: function(result){
-    respSearch = result.items;
-    result = result.items;
-    for (i = 0; i < result.length; i++) {
-        createSearchList(i, result[i].full_name,result[i].id,result[i].updated_at,result[i].description,result[i].stargazers_count);
-    }
+        respSearch = result.items;
+        result = result.items;
+         
+        if(result.length > 10){
+            params = 10;
+            $('#addRepository').removeClass('hide');
+        }else{
+            params = result.length;
+        }
+
+        for (i = 0; i < params; i++) {
+            createSearchList(i, result[i].full_name, result[i].id, result[i].updated_at, result[i].description, result[i].stargazers_count);
+            positionScroll++;
+        }
+        
+        positionScroll = result.length === positionScroll ? 0 : positionScroll;
+
         $('select').formSelect();
         $('.chips').chips();
         $('.chips-autocomplete').chips({
@@ -63,7 +77,7 @@ function createSearchList(i, name, id, update, description, stars){
                             '<div class="row">'+
                                 '<div class="col s6 findTag" >'+
                                     '<span class="title">'+name+'</span>'+
-                                    '<p>'+description+'</p>'+
+                                    '<p class="truncate" >'+description+'</p>'+
                                     '<i class="material-icons">grade</i>'+stars+
                                 '</div>'+
                                 '<div class="col s6">'+
@@ -81,6 +95,46 @@ function createSearchList(i, name, id, update, description, stars){
                             '</div>'+
                             '</li>';
 }
+
+
+
+function autocomplete(){}
+
+$('#addRepository').click(function(){
+    var params = respSearch.length > positionScroll ? positionScroll+10 : respSearch.length;
+
+    for (i = positionScroll; i < params; i++) {
+        createSearchList(i, respSearch[i].full_name, respSearch[i].id, respSearch[i].updated_at, respSearch[i].description, respSearch[i].stargazers_count);
+        positionScroll++;
+    }
+
+    if(respSearch.length = positionScroll){
+        positionScroll = 0;
+        $('#addRepository').addClass('hide');
+    }
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 function saveTag(id, index){
     if(respSearch[index].id === id){
