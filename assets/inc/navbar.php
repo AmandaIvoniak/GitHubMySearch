@@ -1,6 +1,8 @@
 <div class="navbar-fixed">
     <nav class="navbar-fixed">
         <div class="nav-wrapper deep-purple">
+        <a href="#" data-target="slide-out" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+
             <a href="<?php echo base_url(); ?>home" class="brand-logo">GitHubMySearch</a>
             <ul class="right hide-on-med-and-down">
                 <li><a id="logoff">Sair</a></li>

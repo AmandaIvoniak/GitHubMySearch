@@ -15,8 +15,8 @@ class search extends CI_Controller{
 					'cssCustom.css'
 				),
 				'scripts' => array(
-					'jsSearch.js',
-					'jsNavandSideBar.js'
+					'jsNavandSideBar.js',
+					'jsSearch.js'					
 				));
 
 			$this->load->view('search.php', $data);
