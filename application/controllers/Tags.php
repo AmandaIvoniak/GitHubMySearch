@@ -28,6 +28,8 @@ class Tags extends CI_Controller{
     public function ajaxTag() {
         if(!$this->input->is_ajax_request() ? exit('Acesso não permitido!') : '');
 
+        $data = $this->input->post();
+
         $user = $this->session->userdata('id_user');
         $result = $this->tags_model->getTags('id_user', $user);
 
@@ -66,4 +68,20 @@ class Tags extends CI_Controller{
 
         echo $result ? 'true' : 'false';
     }
+
+    public function ajaxTagSelect() {
+        if(!$this->input->is_ajax_request() ? exit('Acesso não permitido!') : '');
+
+        $data = $this->input->post();
+
+        $user = $this->session->userdata('id_user');
+        $result = $this->tags_model->getTags('id_user', $user);    
+
+        foreach ($result as $key => $value) {
+            $resultTag = $this->tags_model->checkRepositoryTags($value->id_tag, $data['id'], 'true');
+            $value->selected = $resultTag != NULL ? 'selected': 'false';
+        }
+        echo $result ? json_encode($result) : 'false';
+    }
 }
+

@@ -1,16 +1,7 @@
 var respSearch = 0;
 var positionScroll = 0;
-var que = 0;
-$(document).ready(function(){
-    $.ajax({
-        method: "POST",
-        url: "tags/ajaxTag",
-        data: {},
-        success: function(result){
-            que = JSON.parse(result);
-        }
-    });
 
+$(document).ready(function(){
 })
 
 $('#searchForm').submit(function(e){
@@ -42,7 +33,8 @@ $('#searchForm').submit(function(e){
             createSearchList(i, result[i].full_name, result[i].id, result[i].updated_at, result[i].description, result[i].stargazers_count);
             positionScroll++;
         }
-        $('select').formSelect();
+        $('.tooltipped').tooltip();
+
         positionScroll = result.length === positionScroll ? 0 : positionScroll;
     }
   });
@@ -55,7 +47,7 @@ $('#addRepository').click(function(){
         createSearchList(i, respSearch[i].full_name, respSearch[i].id, respSearch[i].updated_at, respSearch[i].description, respSearch[i].stargazers_count);
         positionScroll++;
     }
-    $('select').formSelect();
+    $('.tooltipped').tooltip();
 
     if(respSearch.length = positionScroll){
         positionScroll = 0;
@@ -66,8 +58,6 @@ $('#addRepository').click(function(){
 function createSearchList(i, name, id, update, description, stars){
     var listSearch = document.getElementById("listSearch");
     if(i === 0 ? listSearch.innerHTML = '': '');
-
-    var resultSelect = createSelect();
 
     listSearch.innerHTML += '<li class="collection-item avatar">'+
                             '<i class="material-icons circle">folder</i>'+
@@ -83,20 +73,31 @@ function createSearchList(i, name, id, update, description, stars){
                                 '</div>'+
                             '</div>'+
                             '<div class="row">'+
-                                '<div class="col s6">'+
-                                '<div class="input-field col s12">'+
-                                    '<select multiple id="'+id+'">'+resultSelect+
+                                '<div class="col s6 hide">'+
+                                '<div class="input-field col s12" >'+
+                                    '<select multiple  id="'+id+'">'+
                                     '</select>'+
                                     '<label>Selecione tags</label>'+
                                 '</div>'+
                                 '</div>'+
                                 '<div class="col s6">'+
-                                    '<a onclick="saveTag('+id+','+i+');" class="saveTagBtn btn-floating btn-large waves-effect waves-light purple right">'+
+                                    '<a id="save'+i+'" onclick="saveTag('+id+','+i+');" class="hide btn-floating btn-large waves-effect waves-light green right">'+
                                     '<i class="material-icons">check</i></a>'+
+                                    '<a id="select'+i+'" onclick="getSelect('+id+','+i+');" class="btn tooltipped btn-floating btn-large waves-effect waves-light purple right" data-position="left" data-tooltip="Adicione tags!">'+
+                                    '<i class="material-icons">add</i></a>'+
                                 '</div>'+
                             '</div>'+
                             '</li>';       
     }
+    
+function getSelect(id, i){
+    $('#select'+i).addClass('hide');
+    $('#save'+i).removeClass('hide');
+    createSelect(id);
+    $('select').formSelect();
+    $('#'+id).parent().parent().parent().removeClass('hide');
+
+};
 
 function saveTag(id, index){
     if(respSearch[index].id === id){
@@ -114,20 +115,39 @@ function saveTag(id, index){
                 id_tag: tags
                 },
                 success: function(result){
-                    if(result == 'true'? M.toast({html: 'Cadastrado com sucesso!!'}) : '');
+                    if(result == 'true'){
+                        M.toast({html: 'Cadastrado com sucesso!!'})
+                        $('#select'+index).removeClass('hide');
+                        $('#save'+index).addClass('hide');
+                        $('#'+id).parent().parent().parent().addClass('hide');
+                    }
                 }
             });
         }else{
             M.toast({html: 'Por favor selecione uma tag!'});
         }
     }
-
 };
 
-function createSelect(){
-    selectTag = "";
-    for (i = 0; i < que.length; i++) {
-        selectTag += '<option value="'+que[i].id_tag+'">'+que[i].name_tag+'</option>';
-    }
-    return selectTag;
+function createSelect(id){
+    selectTag = '';
+    $.ajax({
+        method: "POST",
+        url: "tags/ajaxTagSelect",
+        data: {id},
+        success: function(result){
+            result = JSON.parse(result);
+
+            for (i = 0; i < result.length; i++) {            
+            check = result[i].selected != 'false' ? result[i].selected : '';
+            console.log(check)
+
+
+                selectTag += '<option value="'+result[i].id_tag+'" '+check+'>'+result[i].name_tag+'</option>';
+            }
+            var select = document.getElementById(id);
+            select.innerHTML = selectTag;
+            $('select').formSelect();
+        }        
+    });
 }

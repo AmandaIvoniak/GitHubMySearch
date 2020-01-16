@@ -21,7 +21,6 @@ class Repository_model extends CI_Model{
     public function checkRepository($id_rep, $user){
         $this->db->select('id_rep')->from('repository')->where('id_rep', $id_rep)->where('id_user', $user);
         $result = $this->db->get();
-
         return $result->num_rows() > 0 ? true : false;
     }
     
@@ -35,8 +34,6 @@ class Repository_model extends CI_Model{
     // }
 
     public function updateRepository($data){
-        $this->db->where('id_rep', $data['id_rep']);
-        $this->db->update('repository', $data); 
-
+        return $this->db->where('id_rep', $data['id_rep'])->where('id_user', $data['id_user'])->update('repository', $data);
     }
 }

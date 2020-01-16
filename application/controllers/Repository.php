@@ -35,19 +35,25 @@ class repository extends CI_Controller{
         unset($data['id_tag']);
 
         $result = $this->repository_model->checkRepository($data['id_rep'], $user);
-        if($result){
+        if($result){           
             $this->repository_model->updateRepository($data);
+
             foreach ($tags as $key => $value) {
                 $resultTag = $this->tags_model->checkRepositoryTags($value,$data['id_rep']);
-                if($resultTag == false){                             
-                        $this->tags_model->insertRepositoryTags($value,$data['id_rep']);
+
+                if($resultTag == false){
+                    $this->tags_model->insertRepositoryTags($value,$data['id_rep']);
                 }
             }
+            echo 'true';
         }else{
             $result = $this->repository_model->insertRepository($data);
+            var_dump($result);
+
             foreach ($tags as $key => $value) {
                 $this->tags_model->insertRepositoryTags($value,$data['id_rep']);
-            }    
+            }
+            echo 'true';
         }
     }
 

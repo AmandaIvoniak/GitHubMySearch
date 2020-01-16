@@ -28,15 +28,29 @@ class Tags_model extends CI_Model{
         return $this->db->update('tags', array('name_tag' => $data['name_tag']));
     }
 
-    public function insertRepositoryTags($id_rep, $id_tag){
-        $data['id_rep'] = $id_rep;
+    public function insertRepositoryTags($id_tag, $id_rep ){
         $data['id_tag'] = $id_tag;
+        $data['id_rep'] = $id_rep;
         return $this->db->insert('tagsrepository', $data) ? true : false;
     }
 
 
-    public function checkRepositoryTags($id_tag, $id_rep){
+    public function checkRepositoryTags($id_tag, $id_rep, $allItems = NULL){
         $this->db->select('id_repositoryTag')->from('tagsrepository')->where('id_rep', $id_rep)->where('id_tag', $id_tag);
+        $result = $this->db->get();
+        
+        if($allItems === NULL){    
+            return $result->num_rows() > 0 ? true : false;
+        }else{
+            return $result->row();
+        }
+    }
+       
+
+
+
+    public function getRepositoryTags($id_tag, $id_rep){
+        $this->db->select('id_repositoryTag, id_tag, id_rep')->from('tagsrepository')->where('id_rep', $id_rep)->where('id_tag', $id_tag);
         $result = $this->db->get();
 
        return $result->num_rows() > 0 ? true : false;            
