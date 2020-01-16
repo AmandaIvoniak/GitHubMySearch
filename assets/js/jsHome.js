@@ -25,8 +25,8 @@ function createTags(i, id_user, id_tag, name_tag){
                     '<input type="text" class="tags" id_user="'+id_user+'" id="'+id_tag+'" value="'+name_tag+'">'+
                 '</div>'+
                 '<div class="col s6">'+
-                    '<a onclick="deleteTags('+id_tag+', '+index+')"; href="javascript:void(0)"><i class="iconColor material-icons right">delete</i></a>'+
-                    '<a onclick="editTags('+id_tag+');" href="javascript:void(0)"><i class="iconColor material-icons right">edit</i></a>'+
+                    '<a onclick="deleteTags('+id_tag+', '+index+')"; href="javascript:void(0)"><i class="iconColoRed material-icons right">delete</i></a>'+
+                    '<a onclick="editTags('+id_tag+');" href="javascript:void(0)"><i class="iconColor material-icons right ">edit</i></a>'+
                 '</div>'+
             '</div>'+
         '</li>'

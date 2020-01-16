@@ -8,7 +8,7 @@
                   <li class="collection-header">
                     <h5>Suas Tags</h5>
                     <input type="text" id="inputTag" placeholder="Tag..." style="width: calc(100% - 66px); margin: 0 10px 0 0;">
-                    <a id="registerTag" class="waves-effect waves-light btn">
+                    <a id="registerTag" class="waves-effect waves-light btn purple">
                       <i class="material-icons">add</i>
                     </a>
                   </li>
