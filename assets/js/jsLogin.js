@@ -26,7 +26,7 @@ $("#login").submit(function(e) {
     
  $.ajax({
     method: "POST",
-    url: "login/ajax_login",
+    url: "login/ajaxLogin",
     data: {
       email: email,
       password: password
@@ -55,7 +55,7 @@ $("#register").submit(function(e) {
     
  $.ajax({
     method: "POST",
-    url: "user/ajax_insert",
+    url: "user/ajaxInsert",
     data: {
       name_user: name_user,
       email: email,

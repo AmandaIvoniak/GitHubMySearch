@@ -7,41 +7,41 @@ class Users_model extends CI_Model{
         $this->load->database();
     }
 
-    public function get_user_data($type, $information){
+    public function getUser($type, $information){
         $this->db->select("id_user, name_user, email, password")->from("users")->where($type, $information);
         $result = $this->db->get();
 
-        if($result->num_rows() > 0){
-            return $result->row();
-        }else{
-            return NULL;
-        }
+        return $result->num_rows() > 0 ? $result->row() : false;
     }
 
-    public function insert_user_data($table, $data){
-        if($this->db->insert($table, $data)){
-            return 'true';
-        }else{
-            return NULL;
-        }
+    public function insertUser($table, $data){
+        return $this->db->insert($table, $data);
     }
 
-    public function update_user_data($table, $data, $id){
-        $this->db->where('id_user', $id);
-        $this->db->update($table, $data);
+    public function updateUser($table, $data, $id){
+        return $this->db->where('id_user', $id)->update($table, $data);
     }
 
+
+
+
+
+
+
+
+
+
+    
+///AJUSTAR
     public function duplicate_user_data($field, $data, $id = NULL){
 
-        $result = $this->users_model->get_user_data($field, $data);
+        $result = $this->users_model->getUser($field, $data);
 
-        var_dump($result);
-        if($id != $result->id_user && $result === NULL){
+        if($id != $result->id_user && $result === false){
             return false;
         }else{
             return true;
         }
-        $this->db->from($table);
-        $this->db->where('id_user', $id);
-    }
+        var_dump($this->db->from($table)->where('id_user', $id));
+     }
 }

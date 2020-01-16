@@ -1,7 +1,7 @@
 $(document).ready(function(){
     $.ajax({
         method: "POST",
-        url: "user/ajax_user_data",    
+        url: "user/ajaxUser",    
         success: function(result){
             result = JSON.parse(result);
             $('#name_user').val(result.name_user);
@@ -36,7 +36,7 @@ $('#formEdit').submit(function(e){
 
     $.ajax({
         method: "POST",
-        url: "user/ajax_update",
+        url: "user/ajaxUpdate",
         data: {
           user_id:id,
           name_user: name_user,

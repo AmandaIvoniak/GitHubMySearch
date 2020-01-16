@@ -26,11 +26,11 @@ class User extends CI_Controller{
         }
     }
     
-    public function ajax_user_data() {
+    public function ajaxUser() {
         if(!$this->input->is_ajax_request() ? exit('Acesso não permitido!') : '');
 
         $id_user = $this->session->userdata('id_user');
-        $result = $this->users_model->get_user_data('id_user', $id_user);
+        $result = $this->users_model->getUser('id_user', $id_user);
 
         if($result){
             $this->session->set_userdata('id_user', $id_user);
@@ -40,7 +40,7 @@ class User extends CI_Controller{
         }
     }
 
-    public function ajax_update() {
+    public function ajaxUpdate() {
         if(!$this->input->is_ajax_request() ? exit('Acesso não permitido!') : '');
 
         $data = $this->input->post();
@@ -52,20 +52,19 @@ class User extends CI_Controller{
             $result = $this->users_model->duplicate_user_data('email', $data['email'], $id);
             if($result === true){
                 $data['password'] = md5($data['password']);
-                $result = $this->users_model->update_user_data('users', $data, $id);
-                echo true;
+                $result = $this->users_model->updateUser('users', $data, $id);
+                echo 'true';
 
             }else{
-                echo 'false1';
-            }
-           
+                echo 'false';
+            }           
 
         }else{
             echo 'false';
         }
     }
 
-    public function ajax_insert() {
+    public function ajaxInsert() {
         if(!$this->input->is_ajax_request() ? exit('Acesso não permitido!') : '');
 
         $data = $this->input->post();
@@ -73,8 +72,8 @@ class User extends CI_Controller{
         if($data['password'] === $data['passwordConfirm']){
             unset($data['passwordConfirm']);
             $data['password'] = md5($data['password']);
-            $this->users_model->insert_user_data('users', $data);
-            $result = $this->users_model->get_user_data('email', $data['email']);
+            $this->users_model->insertUser('users', $data);
+            $result = $this->users_model->getUser('email', $data['email']);
 
             if($result){
                 $id_user = $result->id_user;

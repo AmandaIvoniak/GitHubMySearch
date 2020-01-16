@@ -6,7 +6,7 @@ $(document).ready(function(){
 function getTags(){
     $.ajax({
         method: "POST",
-        url: "tags/ajax_tag_data",
+        url: "tags/ajaxTag",
         data: {},
         success: function(result){
             result = JSON.parse(result);
@@ -37,7 +37,7 @@ function createTags(i, user_id, tags_id, name_tag){
 function editTags(tags_id) {
     $.ajax({
         method: "POST",
-        url: "tags/ajax_update",
+        url: "tags/ajaxUpdate",
         data: {
             tags_id: tags_id,
             name_tag: $('#'+tags_id).val()
@@ -59,7 +59,7 @@ function deleteTags(tags_id, num) {
 
     $.ajax({
         method: "POST",
-        url: "tags/ajax_delete",
+        url: "tags/ajaxDelete",
         data: {
             tags_id:tags_id,
             user_id:user_id  
@@ -85,7 +85,7 @@ $('#registerTag').click(function(){
     }else{
         $.ajax({
             method: "POST",
-            url: "tags/ajax_insert",
+            url: "tags/ajaxInsert",
             data: {
                 name_tag: tag
             },

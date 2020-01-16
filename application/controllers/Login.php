@@ -25,18 +25,18 @@ class Login extends CI_Controller {
         }
     }
 
-    public function ajax_logoff(){
+    public function ajaxLogoff(){
         $this->load->library('session');
         $this->session->sess_destroy();
         echo 'true';
     }
 
-    public function ajax_login() {
+    public function ajaxLogin() {
         if(!$this->input->is_ajax_request() ? exit('Acesso não permitido!') : '');
 
         $email = $this->input->post('email');
         $password = $this->input->post('password');        
-        $result = $this->users_model->get_user_data('email', $email);
+        $result = $this->users_model->getUser('email', $email);
 
         if($result){
             $id_user = $result->id_user;

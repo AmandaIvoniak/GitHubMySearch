@@ -4,7 +4,7 @@ var que = 0;
 $(document).ready(function(){
     $.ajax({
         method: "POST",
-        url: "tags/ajax_tag_data",
+        url: "tags/ajaxTag",
         data: {},
         success: function(result){
             que = JSON.parse(result);
@@ -104,7 +104,7 @@ function saveTag(id, index){
       if(tags > 0){
         $.ajax({
             method: "POST",
-            url: "repository/ajax_insert",
+            url: "repository/ajaxInsert",
             data: {
               rep_id: respSearch[index].id,
               name: respSearch[index].full_name,
