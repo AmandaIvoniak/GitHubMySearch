@@ -28,11 +28,8 @@ $('#formEdit').submit(function(e){
       if(valor.name == 'passwordConfirm' ? passwordConfirm = valor.value : '');
     }
         
-    id = $('.editBtn').attr('id');
-    
-    if(password != passwordConfirm){
-        alert('Senhas não coencidem!');
-    }
+    id = $('.editBtn').attr('id');    
+    if(password != passwordConfirm ? M.toast({html: 'Senhas não coincidem!'}) : '');
 
     $.ajax({
         method: "POST",
@@ -45,13 +42,11 @@ $('#formEdit').submit(function(e){
           passwordConfirm: passwordConfirm
         },
         success: function(result){
-          if(result == 'false'){
-            alert("Senha incorreta!");
-          }else if(result === 'true'){
-           alert('Salvo!')
-          }
+            if(result == 'false'){
+                M.toast({html: 'Senhas diferentes!'});
+            }else if(result === 'true'){
+                M.toast({html: 'Salvo com sucesso!'});
+            }
         }
-      }); 
-
-
+    });
 })

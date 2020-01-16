@@ -7,16 +7,10 @@ class Tags_model extends CI_Model{
         $this->load->database();
     }
 
-    public function getTags($user, $filter = false){
-        $this->db->select("id_user, name_tag, id_tag")->from("tags")->where("id_user", $user);
-
-        if ($filter) {
-            foreach ($filter as $key => $value) {
-                $this->db->where($key, $value);
-            }
-        }
-
+    public function getTags($type, $data){
+        $this->db->select('id_user, name_tag, id_tag')->from('tags')->where($type, $data);
         $result = $this->db->get();
+
         return $result->num_rows() > 0 ? $result->result() : false;
     }
 
@@ -24,14 +18,14 @@ class Tags_model extends CI_Model{
         return $this->db->insert('tags', $data) ? $this->db->insert_id() : false;
     }
 
-    public function deleteTags($table, $data){
+    public function deleteTags($data){
         $this->db->where('id_user', $data['id_user'])->where('id_tag', $data['id_tag']); 
-        return $this->db->delete($table);
+        return $this->db->delete('tags');
    }
 
-    public function updateTags($table, $data){
+    public function updateTags($data){
         $this->db->where('id_tag', $data['id_tag']);
-        return $this->db->update($table, array('name_tag' => $data['name_tag']));
+        return $this->db->update('tags', array('name_tag' => $data['name_tag']));
     }
 
     public function insertRepositoryTags($id_rep, $id_tag){
@@ -42,7 +36,7 @@ class Tags_model extends CI_Model{
 
 
     public function checkRepositoryTags($id_tag, $id_rep){
-        $this->db->select("id_repositoryTag")->from("tagsrepository")->where("id_rep", $id_rep)->where("id_tag", $id_tag);
+        $this->db->select('id_repositoryTag')->from('tagsrepository')->where('id_rep', $id_rep)->where('id_tag', $id_tag);
         $result = $this->db->get();
 
        return $result->num_rows() > 0 ? true : false;            

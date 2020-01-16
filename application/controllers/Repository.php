@@ -51,46 +51,46 @@ class repository extends CI_Controller{
         }
     }
 
-    public function ajaxUpdate() {
-        if(!$this->input->is_ajax_request() ? exit('Acesso não permitido!') : '');
+    // public function ajaxUpdate() {
+    //     if(!$this->input->is_ajax_request() ? exit('Acesso não permitido!') : '');
 
-        $data = $this->input->post();
+    //     $data = $this->input->post();
 
-        if($data['password'] === $data['passwordConfirm']){
-            unset($data['passwordConfirm']);
-            $data['password'] = md5($data['password']);
-            $this->users_model->insertUser('users', $data);
-            $result = $this->perfil_model->updateUser('users', $data['id_user']);
+    //     if($data['password'] === $data['passwordConfirm']){
+    //         unset($data['passwordConfirm']);
+    //         $data['password'] = md5($data['password']);
+    //         $this->users_model->insertUser('users', $data);
+    //         $result = $this->perfil_model->updateUser('users', $data['id_user']);
 
-            if($result){            
-                $id_user = $result->id_user;
-                $this->session->set_userdata('id_user', $id_user);
-                echo 'true';
-            }
-        }else{
-            echo 'false';
-        }
-    }
+    //         if($result){            
+    //             $id_user = $result->id_user;
+    //             $this->session->set_userdata('id_user', $id_user);
+    //             echo 'true';
+    //         }
+    //     }else{
+    //         echo 'false';
+    //     }
+    // }
 
-    public function ajaxDelete() {
-        if(!$this->input->is_ajax_request() ? exit('Acesso não permitido!') : '');
+    // public function ajaxDelete() {
+    //     if(!$this->input->is_ajax_request() ? exit('Acesso não permitido!') : '');
 
-        $data = $this->input->post();
+    //     $data = $this->input->post();
 
-        if($data['password'] === $data['passwordConfirm']){
-            unset($data['passwordConfirm']);
-            $data['password'] = md5($data['password']);
-            $this->users_model->insertUser('users', $data);
-            $result = $this->perfil_model->updateUser('users', $data['id_user']);
+    //     if($data['password'] === $data['passwordConfirm']){
+    //         unset($data['passwordConfirm']);
+    //         $data['password'] = md5($data['password']);
+    //         $this->users_model->insertUser('users', $data);
+    //         $result = $this->perfil_model->updateUser('users', $data['id_user']);
 
-            if($result){            
-                $id_user = $result->id_user;
-                $this->session->set_userdata('id_user', $id_user);
-                echo 'true';
-            }
-        }else{
-            echo 'false';
-        }
-    }
+    //         if($result){            
+    //             $id_user = $result->id_user;
+    //             $this->session->set_userdata('id_user', $id_user);
+    //             echo 'true';
+    //         }
+    //     }else{
+    //         echo 'false';
+    //     }
+    // }
 
 }

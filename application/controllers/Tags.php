@@ -29,7 +29,7 @@ class Tags extends CI_Controller{
         if(!$this->input->is_ajax_request() ? exit('Acesso não permitido!') : '');
 
         $user = $this->session->userdata('id_user');
-        $result = $this->tags_model->getTags($user);
+        $result = $this->tags_model->getTags('id_user', $user);
 
         if($result){
             echo json_encode($result);
@@ -44,12 +44,9 @@ class Tags extends CI_Controller{
         $data = $this->input->post();
 
         $data['id_user'] =  $this->session->userdata('id_user');
-        $newId = $this->tags_model->insertTags('tags', $data);
-
+        $newId = $this->tags_model->insertTags($data);
         if($newId){
-            $result = $this->tags_model->getTags($data['id_user'], array(
-                'id_tag' => $newId
-            ));
+            $result = $this->tags_model->getTags('id_tag',$newId);
             echo json_encode($result);
         }else{
             echo 'false';
@@ -58,14 +55,14 @@ class Tags extends CI_Controller{
 
     public function ajaxUpdate() {
         if(!$this->input->is_ajax_request() ? exit('Acesso não permitido!') : '');
-        echo $this->tags_model->updateTags('tags', $this->input->post()) ? true : false;
+        echo $this->tags_model->updateTags($this->input->post()) ? 'true' : 'false';
     }
 
     public function ajaxDelete() {
         if(!$this->input->is_ajax_request() ? exit('Acesso não permitido!') : '');
 
         $data = $this->input->post();
-        $result = $this->tags_model->deleteTags('tags', $data);
+        $result = $this->tags_model->deleteTags($data);
 
         echo $result ? 'true' : 'false';
     }

@@ -100,31 +100,28 @@ function createSearchList(i, name, id, update, description, stars){
 
 function saveTag(id, index){
     if(respSearch[index].id === id){
-      var tags = $('#'+id).val();
-      console.log(tags)
-      if(tags != ''){
-        $.ajax({
-            method: "POST",
-            url: "repository/ajaxInsert",
-            data: {
-              id_rep: respSearch[index].id,
-              name: respSearch[index].full_name,
-              description: respSearch[index].description,
-              stars: respSearch[index].stargazers_count,
-              updateDate:respSearch[index].updated_at,
-              id_tag: tags
-            },
-            success: function(result){
-              if(result == 'true'){
-                alert('Cadastrado com sucesso')
-              }
-            }
-          }); 
-      }else{
-        alert("por favor preencha uma tag")
-      }
+        var tags = $('#'+id).val();
+        if(tags != ''){
+            $.ajax({
+                method: "POST",
+                url: "repository/ajaxInsert",
+                data: {
+                id_rep: respSearch[index].id,
+                name: respSearch[index].full_name,
+                description: respSearch[index].description,
+                stars: respSearch[index].stargazers_count,
+                updateDate:respSearch[index].updated_at,
+                id_tag: tags
+                },
+                success: function(result){
+                    if(result == 'true'? M.toast({html: 'Cadastrado com sucesso!!'}) : '');
+                }
+            });
+        }else{
+            M.toast({html: 'Por favor selecione uma tag!'});
+        }
     }
- 
+
 };
 
 function createSelect(){

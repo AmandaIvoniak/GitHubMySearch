@@ -34,6 +34,8 @@ $("#login").submit(function(e) {
     success: function(result){
       if(result == 'true'){
         window.location ='home';
+      }else{
+        M.toast({html: 'E-mail ou senha incorretos'})
       }
     }
   }); 
@@ -63,10 +65,11 @@ $("#register").submit(function(e) {
       passwordConfirm: passwordConfirm
     },
     success: function(result){
-      if(result == 'false'){
-        alert("Senha incorreta!");
-      }else if(result === 'true'){
-        window.location ='home';
+      if(result === 'true'){
+        window.location.href ='home';
+      }else{
+        M.toast({html: 'Informações incorretas!!'});
+
       }
     }
   }); 

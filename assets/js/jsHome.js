@@ -81,7 +81,7 @@ $('#registerTag').click(function(){
     var tag = $('#inputTag').val();
     $('#inputTag').val('');
     if(tag == ""){
-        alert('preencha o campo');
+        M.toast({html: 'Por favor preencha o campo!'});
     }else{
         $.ajax({
             method: "POST",
@@ -89,8 +89,10 @@ $('#registerTag').click(function(){
             data: {
                 name_tag: tag
             },
-            success: function(result){  
+            success: function(result){ 
                 result = JSON.parse(result);
+                console.log(result) 
+
                 for (i = 0; i < result.length; i++) {
                     createTags(i, result[i].id_user, result[i].id_tag, result[i].name_tag);
                 }
@@ -99,3 +101,7 @@ $('#registerTag').click(function(){
         });
     }
 });
+
+function createReportByTag(){
+    '<li class="collection-item truncate"><div>Nome do projeto<a href="#!" class="secondary-content"><i class="iconColor material-icons">send</i></a></div></li>';
+}

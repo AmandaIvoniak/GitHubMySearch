@@ -49,16 +49,14 @@ class User extends CI_Controller{
             unset($data['passwordConfirm']);
             unset($data['id_user']);
 
-            $result = $this->users_model->duplicate_user_data('email', $data['email'], $id);
+            $result = $this->users_model->duplicateEmail($data['email'], $id);
             if($result === true){
                 $data['password'] = md5($data['password']);
-                $result = $this->users_model->updateUser('users', $data, $id);
+                $result = $this->users_model->updateUser($data, $id);
                 echo 'true';
-
             }else{
                 echo 'false';
-            }           
-
+            }
         }else{
             echo 'false';
         }
@@ -68,11 +66,12 @@ class User extends CI_Controller{
         if(!$this->input->is_ajax_request() ? exit('Acesso não permitido!') : '');
 
         $data = $this->input->post();
+        $resultEmail = $this->users_model->duplicateEmail($data['email']);
 
-        if($data['password'] === $data['passwordConfirm']){
+        if($data['password'] === $data['passwordConfirm'] && $resultEmail === true){
             unset($data['passwordConfirm']);
             $data['password'] = md5($data['password']);
-            $this->users_model->insertUser('users', $data);
+            $this->users_model->insertUser($data);
             $result = $this->users_model->getUser('email', $data['email']);
 
             if($result){
