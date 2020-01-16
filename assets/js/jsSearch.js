@@ -40,7 +40,6 @@ $('#searchForm').submit(function(e){
 
         for (i = 0; i < params; i++) {
             createSearchList(i, result[i].full_name, result[i].id, result[i].updated_at, result[i].description, result[i].stargazers_count);
-            
             positionScroll++;
         }
         $('select').formSelect();
@@ -56,6 +55,7 @@ $('#addRepository').click(function(){
         createSearchList(i, respSearch[i].full_name, respSearch[i].id, respSearch[i].updated_at, respSearch[i].description, respSearch[i].stargazers_count);
         positionScroll++;
     }
+    $('select').formSelect();
 
     if(respSearch.length = positionScroll){
         positionScroll = 0;
@@ -91,7 +91,7 @@ function createSearchList(i, name, id, update, description, stars){
                                 '</div>'+
                                 '</div>'+
                                 '<div class="col s6">'+
-                                    '<a onclick=saveTag('+id+','+i+'); class="saveTagBtn btn-floating btn-large waves-effect waves-light purple right">'+
+                                    '<a onclick="saveTag('+id+','+i+');" class="saveTagBtn btn-floating btn-large waves-effect waves-light purple right">'+
                                     '<i class="material-icons">check</i></a>'+
                                 '</div>'+
                             '</div>'+
@@ -101,17 +101,18 @@ function createSearchList(i, name, id, update, description, stars){
 function saveTag(id, index){
     if(respSearch[index].id === id){
       var tags = $('#'+id).val();
-      if(tags > 0){
+      console.log(tags)
+      if(tags != ''){
         $.ajax({
             method: "POST",
             url: "repository/ajaxInsert",
             data: {
-              rep_id: respSearch[index].id,
+              id_rep: respSearch[index].id,
               name: respSearch[index].full_name,
               description: respSearch[index].description,
               stars: respSearch[index].stargazers_count,
               updateDate:respSearch[index].updated_at,
-              tags: tags
+              id_tag: tags
             },
             success: function(result){
               if(result == 'true'){
@@ -129,7 +130,7 @@ function saveTag(id, index){
 function createSelect(){
     selectTag = "";
     for (i = 0; i < que.length; i++) {
-        selectTag += '<option value="'+que[i].tags_id+'">'+que[i].name_tag+'</option>';
+        selectTag += '<option value="'+que[i].id_tag+'">'+que[i].name_tag+'</option>';
     }
     return selectTag;
 }

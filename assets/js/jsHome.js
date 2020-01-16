@@ -11,22 +11,22 @@ function getTags(){
         success: function(result){
             result = JSON.parse(result);
             for (i = 0; i < result.length; i++) {
-                createTags(i, result[i].user_id, result[i].tags_id, result[i].name_tag)
+                createTags(i, result[i].id_user, result[i].id_tag, result[i].name_tag)
             }
         }
     });
 }
 
-function createTags(i, user_id, tags_id, name_tag){
+function createTags(i, id_user, id_tag, name_tag){
     $('#tagList').append(
         '<li class="collection-item" id="li-'+index+'">'+
             '<div class="row valign-wrapper">'+
                 '<div class="col s6 left">'+
-                    '<input type="text" class="tags" user_id="'+user_id+'" id="'+tags_id+'" value="'+name_tag+'">'+
+                    '<input type="text" class="tags" id_user="'+id_user+'" id="'+id_tag+'" value="'+name_tag+'">'+
                 '</div>'+
                 '<div class="col s6">'+
-                    '<a onclick="deleteTags('+tags_id+', '+index+')"; href="javascript:void(0)"><i class="iconColor material-icons right">delete</i></a>'+
-                    '<a onclick="editTags('+tags_id+');" href="javascript:void(0)"><i class="iconColor material-icons right">edit</i></a>'+
+                    '<a onclick="deleteTags('+id_tag+', '+index+')"; href="javascript:void(0)"><i class="iconColor material-icons right">delete</i></a>'+
+                    '<a onclick="editTags('+id_tag+');" href="javascript:void(0)"><i class="iconColor material-icons right">edit</i></a>'+
                 '</div>'+
             '</div>'+
         '</li>'
@@ -34,13 +34,13 @@ function createTags(i, user_id, tags_id, name_tag){
     index++;
 }
 
-function editTags(tags_id) {
+function editTags(id_tag) {
     $.ajax({
         method: "POST",
         url: "tags/ajaxUpdate",
         data: {
-            tags_id: tags_id,
-            name_tag: $('#'+tags_id).val()
+            id_tag: id_tag,
+            name_tag: $('#'+id_tag).val()
         },
         success: resp => {
             if (resp == 'true') {
@@ -53,16 +53,16 @@ function editTags(tags_id) {
     });
 }
 
-function deleteTags(tags_id, num) {
-    user_id = $('#'+tags_id).attr('user_id');
-    name_tag = $('#'+tags_id).val();
+function deleteTags(id_tag, num) {
+    id_user = $('#'+id_tag).attr('id_user');
+    name_tag = $('#'+id_tag).val();
 
     $.ajax({
         method: "POST",
         url: "tags/ajaxDelete",
         data: {
-            tags_id:tags_id,
-            user_id:user_id  
+            id_tag:id_tag,
+            id_user:id_user  
         },
         success: function(result){
             if (result == 'true') {
@@ -92,7 +92,7 @@ $('#registerTag').click(function(){
             success: function(result){  
                 result = JSON.parse(result);
                 for (i = 0; i < result.length; i++) {
-                    createTags(i, result[i].user_id, result[i].tags_id, result[i].name_tag);
+                    createTags(i, result[i].id_user, result[i].id_tag, result[i].name_tag);
                 }
                 M.toast({html: 'Tag cadastrada com sucesso!'});
             }

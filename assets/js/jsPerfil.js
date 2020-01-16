@@ -38,7 +38,7 @@ $('#formEdit').submit(function(e){
         method: "POST",
         url: "user/ajaxUpdate",
         data: {
-          user_id:id,
+          id_user:id,
           name_user: name_user,
           email: email,
           password: password,

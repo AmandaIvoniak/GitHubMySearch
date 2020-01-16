@@ -43,12 +43,12 @@ class Tags extends CI_Controller{
 
         $data = $this->input->post();
 
-        $data['user_id'] =  $this->session->userdata('id_user');
+        $data['id_user'] =  $this->session->userdata('id_user');
         $newId = $this->tags_model->insertTags('tags', $data);
 
         if($newId){
-            $result = $this->tags_model->getTags($data['user_id'], array(
-                'tags_id' => $newId
+            $result = $this->tags_model->getTags($data['id_user'], array(
+                'id_tag' => $newId
             ));
             echo json_encode($result);
         }else{

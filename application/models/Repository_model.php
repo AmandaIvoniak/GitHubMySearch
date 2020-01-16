@@ -8,15 +8,23 @@ class Repository_model extends CI_Model{
     }
 
     // public function get_tags_data($user){
-    //     $this->db->select("user_id, name_tag, tags_id")->from("tags")->where("user_id", $user);
+    //     $this->db->select("id_user, name_tag, id_tag")->from("tags")->where("id_user", $user);
     //     $result = $this->db->get();
 
     //     return $result->num_rows() > 0 ? $result->result() : false;
     // }
 
-    public function insertRepository($table, $data){
-        return $this->db->insert($table, $data);
+    public function insertRepository($data){
+        return $this->db->insert('repository', $data);
     }
+
+    public function checkRepository($id_rep, $user){
+        $this->db->select("id_rep")->from("repository")->where("id_rep", $id_rep)->where("id_user", $user);
+        $result = $this->db->get();
+
+        return $result->num_rows() > 0 ? true : false;
+    }
+    
 
     // public function deleteTags($table, $data){
     //     var_dump('OIEEEEEEEEEEEEEEE');
@@ -26,13 +34,9 @@ class Repository_model extends CI_Model{
     //     return $this->db->insert($table, $data);
     // }
 
-    // public function updateTags($table, $data){
-    //     $this->db->update($table, $data); 
+    public function updateRepository($data){
+        $this->db->where('id_rep', $data['id_rep']);
+        $this->db->update('repository', $data); 
 
-    //     if($this->db->insert($table, $data)){
-    //         return 'true';
-    //     }else{
-    //         return NULL;
-    //     }
-    // }
+    }
 }

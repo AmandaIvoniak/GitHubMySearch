@@ -45,9 +45,9 @@ class User extends CI_Controller{
 
         $data = $this->input->post();
         if($data['password'] === $data['passwordConfirm']){
-            $id = $data['user_id'];
+            $id = $data['id_user'];
             unset($data['passwordConfirm']);
-            unset($data['user_id']);
+            unset($data['id_user']);
 
             $result = $this->users_model->duplicate_user_data('email', $data['email'], $id);
             if($result === true){
