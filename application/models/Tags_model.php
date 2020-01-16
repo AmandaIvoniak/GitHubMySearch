@@ -19,8 +19,14 @@ class Tags_model extends CI_Model{
     }
 
     public function deleteTags($data){
-        $this->db->where('id_user', $data['id_user'])->where('id_tag', $data['id_tag']); 
-        return $this->db->delete('tags');
+        $this->db->where('id_tag', $data['id_tag']);
+
+        if($this->db->delete('tagsrepository')){
+            $this->db->where('id_user', $data['id_user'])->where('id_tag', $data['id_tag']); 
+            return $this->db->delete('tags')? true : false;
+        }else{
+            return false;
+        }         
    }
 
     public function updateTags($data){
