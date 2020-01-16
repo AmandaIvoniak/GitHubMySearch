@@ -4,15 +4,17 @@
     <div class="row">
         <div class="col s12 m6">
             <div class="card cardCustom ">
+              <div id="myDIV">
                 <ul class="collection with-header" id="tagList">   
-                    <li class="collection-header"><h5>Suas Tags</h5></li>
+                  <li class="collection-header">
+                    <h5>Suas Tags</h5>
+                    <input type="text" id="inputTag" placeholder="Tag..." style="width: calc(100% - 66px); margin: 0 10px 0 0;">
+                    <a id="registerTag" class="waves-effect waves-light btn">
+                      <i class="material-icons">add</i>
+                    </a>
+                  </li>
                 </ul>
-                <a id="inputTag" class="btn-floating btn-large waves-effect waves-light green right">
-                    <i class="material-icons">add</i>
-                </a>
-                <a id="registerTag" class="hide btn-floating btn-large waves-effect waves-light green right">
-                    <i class="material-icons">check</i>
-                </a>
+              </div>
             </div>            
         </div>
         <div class="col s6 m6">
@@ -30,5 +32,3 @@
 </div>
 <?php include 'assets/inc/footer.php'; ?>
 <?php include 'assets/inc/scripts.php'; ?>
-
-

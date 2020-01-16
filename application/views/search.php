@@ -22,7 +22,7 @@
                 <div class="col s2">
                     <p>
                         <label style="">
-                            <input name="order" type="radio" value='DESC' checked/>
+                            <input name="order" type="radio" value='DESC'/>
                             <span>Desc</span>
                         </label>
                         <label style=" ">

@@ -1,7 +1,15 @@
-const BASE_URL = 'localhost/GitHubMySearch/';
 var respSearch = 0;
 var positionScroll = 0;
+var que = 0;
 $(document).ready(function(){
+    $.ajax({
+        method: "POST",
+        url: "tags/ajax_tag_data",
+        data: {},
+        success: function(result){
+            que = JSON.parse(result);
+        }
+    });
 
 })
 
@@ -20,7 +28,6 @@ $('#searchForm').submit(function(e){
     method: "GET",
     url: "https://api.github.com/search/repositories?"+search,    
     success: function(result){
-
         respSearch = result.items;
         result = result.items;
          
@@ -33,11 +40,11 @@ $('#searchForm').submit(function(e){
 
         for (i = 0; i < params; i++) {
             createSearchList(i, result[i].full_name, result[i].id, result[i].updated_at, result[i].description, result[i].stargazers_count);
+            
             positionScroll++;
         }
-        
-        positionScroll = result.length === positionScroll ? 0 : positionScroll;
         $('select').formSelect();
+        positionScroll = result.length === positionScroll ? 0 : positionScroll;
     }
   });
 })
@@ -60,6 +67,8 @@ function createSearchList(i, name, id, update, description, stars){
     var listSearch = document.getElementById("listSearch");
     if(i === 0 ? listSearch.innerHTML = '': '');
 
+    var resultSelect = createSelect();
+
     listSearch.innerHTML += '<li class="collection-item avatar">'+
                             '<i class="material-icons circle">folder</i>'+
                             '<!-- <img src="images/yuna.jpg" alt="" class="circle"> -->'+
@@ -75,49 +84,24 @@ function createSearchList(i, name, id, update, description, stars){
                             '</div>'+
                             '<div class="row">'+
                                 '<div class="col s6">'+
-                                '<div class="input-field col s12" name="tag" id="'+id+'">'+
-                                    '<select multiple>'+
-                                    '<option value="" disabled selected>Choose your option</option>'+
-                                    '<option value="1">Option 1</option>'+
-                                    '<option value="2">Option 2</option>'+
-                                    '<option value="3">Option 3</option>'+
+                                '<div class="input-field col s12">'+
+                                    '<select multiple id="'+id+'">'+resultSelect+
                                     '</select>'+
-                                    '<label>Materialize Multiple Select</label>'+
+                                    '<label>Selecione tags</label>'+
                                 '</div>'+
-                                    '<div   class=" chips chips-autocomplete"></div>'+
                                 '</div>'+
                                 '<div class="col s6">'+
                                     '<a onclick=saveTag('+id+','+i+'); class="saveTagBtn btn-floating btn-large waves-effect waves-light purple right">'+
                                     '<i class="material-icons">check</i></a>'+
                                 '</div>'+
                             '</div>'+
-                            '</li>';
-}
-
-
-
-function getTags(){}
-
-
-
-
-
-
-
-
-
-
-
+                            '</li>';       
+    }
 
 function saveTag(id, index){
     if(respSearch[index].id === id){
-      var tagsArray = M.Chips.getInstance($('#'+id)).chipsData;
-      if(tagsArray.length > 0){
-        var tags = [];
-        tagsArray.forEach(element => {
-            tags.push(element.tag);        
-        });
-
+      var tags = $('#'+id).val();
+      if(tags > 0){
         $.ajax({
             method: "POST",
             url: "repository/ajax_insert",
@@ -127,7 +111,7 @@ function saveTag(id, index){
               description: respSearch[index].description,
               stars: respSearch[index].stargazers_count,
               updateDate:respSearch[index].updated_at,
-              tags: JSON.stringify(tags)
+              tags: tags
             },
             success: function(result){
               if(result == 'true'){
@@ -142,3 +126,10 @@ function saveTag(id, index){
  
 };
 
+function createSelect(){
+    selectTag = "";
+    for (i = 0; i < que.length; i++) {
+        selectTag += '<option value="'+que[i].tags_id+'">'+que[i].name_tag+'</option>';
+    }
+    return selectTag;
+}
