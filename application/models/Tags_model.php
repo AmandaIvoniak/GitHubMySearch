@@ -10,7 +10,6 @@ class Tags_model extends CI_Model{
     public function getTags($type, $data){
         $this->db->select('id_user, name_tag, id_tag')->from('tags')->where($type, $data);
         $result = $this->db->get();
-
         return $result->num_rows() > 0 ? $result->result() : false;
     }
 

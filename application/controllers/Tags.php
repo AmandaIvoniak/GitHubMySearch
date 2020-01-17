@@ -88,9 +88,10 @@ class Tags extends CI_Controller{
         if(!$this->input->is_ajax_request() ? exit('Acesso não permitido!') : '');
             $newData = [];
             $data = $this->input->post();
+            $user = $this->session->userdata('id_user');
             foreach ($data['id_tag'] as $key => $value) {
-                $newData[] = $this->repository_model->meu($value);
-        }
+                $newData[] = $this->repository_model->getReportInformation($value, $user);
+            }
         echo json_encode($newData);
     }
 }

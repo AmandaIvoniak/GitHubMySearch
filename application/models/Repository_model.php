@@ -39,13 +39,13 @@ class Repository_model extends CI_Model{
         return $result->num_rows() > 0 ? $result->result() : false;
     }
 
-    public function meu($data){
+    public function getReportInformation($data, $user){
         $this->db->select('repository.name, tags.name_tag');
         $this->db->from('repository');
         $this->db->from('tags');
         $this->db->join('tagsrepository', 'tagsrepository.id_rep = repository.id_tablerepository and tagsrepository.id_tag = tags.id_tag');
         $this->db->where('tags.id_tag',$data);
-        $this->db->where('tags.id_user',27);
+        $this->db->where('tags.id_user',$user);
         $result = $this->db->get();
 
         return $result->result();

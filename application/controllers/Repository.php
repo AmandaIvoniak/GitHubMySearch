@@ -17,12 +17,14 @@ class Repository extends CI_Controller{
         if(!$this->input->is_ajax_request() ? exit('Acesso não permitido!') : '');
         $data = $this->input->post();
         $fullDelete = $this->repository_model->deleteTagByIdRep($data['id_rep']);
+
         if (isset($data['id_tag'])) {
             $user = $this->session->userdata('id_user');
             $data['id_user'] =  $user;
             $tags = $data['id_tag'];
             unset($data['id_tag']);
             $result = $this->repository_model->checkRepository($data['id_rep'], $user);
+
             if($result){           
                 $this->repository_model->updateRepository($data);
 
