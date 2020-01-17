@@ -76,7 +76,9 @@ class Tags extends CI_Controller{
         $result = $this->tags_model->getTags('id_user', $user);    
 
         foreach ($result as $key => $value) {
-            $resultTag = $this->tags_model->checkRepositoryTags($value->id_tag, $data['id'], 'true');
+            $dataRep = $this->repository_model->getRepository($user, $data['id']);
+            $resultTag = $this->tags_model->checkRepositoryTags($value->id_tag, $dataRep->id_tablerepository, 'true');
+
             $value->selected = $resultTag != NULL ? 'selected': 'false';
         }
         echo $result ? json_encode($result) : 'false';

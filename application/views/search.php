@@ -22,30 +22,33 @@
                 <div class="col s2">
                     <p>
                         <label style="">
-                            <input name="order" type="radio" value='DESC'/>
+                            <input name="sort" type="radio" value='updated'/>
                             <span>Desc</span>
                         </label>
                         <label style=" ">
-                            <input name="order" type="radio" value='ASC'/>
+                            <input name="sort" type="radio" value='ASC'/>
                             <span>Asc</span>
                         </label>
                     </p>
                 </div>
                 <div class="col s2">
                     <div class="input-field col s12">
-                        <button type="submit" id="searchBtn" class="right waves-effect waves-light btn deep-purple">Salvar</button>
+                        <button type="submit" id="searchBtn" class="right waves-effect waves-light btn deep-purple">Pesquisar</button>
                     </div>    
                 </div>
             </div>
         </form>                
     </div>
     <div class="cardCustom">
-        <ul class="collection">
+        <ul class="collection" style="overflow: initial;">
             <div id="listSearch"></div>
         </ul>
     </div>
-    <a id="addRepository" class="hide center btn-floating btn-large waves-effect waves-light purple">
-    <i class="material-icons">add</i></a>
+    <div class="center" style="margin-bottom: 30px;">
+        <a id="addRepository" class="hide btn-floating btn-large waves-effect waves-light purple"> 
+            <i class="material-icons">add</i>
+        </a>
+    </div>
 </div>
 <?php include 'assets/inc/footer.php'; ?>
 <?php include 'assets/inc/scripts.php'; ?>
