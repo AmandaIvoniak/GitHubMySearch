@@ -7,6 +7,7 @@ class Tags extends CI_Controller{
         parent::__construct();
         $this->load->library('session');
         $this->load->model('tags_model');
+        $this->load->model('repository_model');
     }
 
     public function index(){
@@ -27,7 +28,6 @@ class Tags extends CI_Controller{
 
     public function ajaxTag() {
         if(!$this->input->is_ajax_request() ? exit('Acesso não permitido!') : '');
-
         $data = $this->input->post();
 
         $user = $this->session->userdata('id_user');
@@ -42,7 +42,6 @@ class Tags extends CI_Controller{
 
     public function ajaxInsert() {
         if(!$this->input->is_ajax_request() ? exit('Acesso não permitido!') : '');
-
         $data = $this->input->post();
 
         $data['id_user'] =  $this->session->userdata('id_user');
@@ -73,7 +72,6 @@ class Tags extends CI_Controller{
         if(!$this->input->is_ajax_request() ? exit('Acesso não permitido!') : '');
 
         $data = $this->input->post();
-
         $user = $this->session->userdata('id_user');
         $result = $this->tags_model->getTags('id_user', $user);    
 
@@ -83,5 +81,14 @@ class Tags extends CI_Controller{
         }
         echo $result ? json_encode($result) : 'false';
     }
-}
 
+    public function reportByTag(){
+        if(!$this->input->is_ajax_request() ? exit('Acesso não permitido!') : '');
+            $newData = [];
+            $data = $this->input->post();
+            foreach ($data['id_tag'] as $key => $value) {
+                $newData[] = $this->repository_model->meu($value);
+        }
+        echo json_encode($newData);
+    }
+}

@@ -40,7 +40,6 @@ class Tags_model extends CI_Model{
         return $this->db->insert('tagsrepository', $data) ? true : false;
     }
 
-
     public function checkRepositoryTags($id_tag, $id_rep, $allItems = NULL){
         $this->db->select('id_repositoryTag')->from('tagsrepository')->where('id_rep', $id_rep)->where('id_tag', $id_tag);
         $result = $this->db->get();
@@ -51,15 +50,16 @@ class Tags_model extends CI_Model{
             return $result->row();
         }
     }
-       
-
-
 
     public function getRepositoryTags($id_tag, $id_rep){
         $this->db->select('id_repositoryTag, id_tag, id_rep')->from('tagsrepository')->where('id_rep', $id_rep)->where('id_tag', $id_tag);
         $result = $this->db->get();
-
-       return $result->num_rows() > 0 ? true : false;            
+        return $result->num_rows() > 0 ? true : false;
     }
 
+    public function getByTags($id_tag){
+        $this->db->select('id_rep')->from('tagsrepository')->where('id_tag', $id_tag);
+        $result = $this->db->get();
+        return $result->num_rows() > 0 ? $result->result() : false;
+    }
 }

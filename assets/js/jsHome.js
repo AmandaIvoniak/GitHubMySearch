@@ -1,107 +1,70 @@
 const BASE_URL = 'localhost/GitHubMySearch/';
-var index = 0;
-$(document).ready(function(){
-    getTags();
+$(document).ready(function(){    
+    createSelect();
+    $('select').formSelect();
+
 });
-function getTags(){
+
+function searchTag() {
+    id_tag = $( "#selectTag" ).val();
+    $.ajax({
+        method:'POST',
+        url:'tags/reportByTag',
+        data:{
+            id_tag: id_tag
+        },
+        success: function(result){
+            var report = '';
+            result = JSON.parse(result);
+
+            result.forEach(element => {                          
+                for (i = 0; i < element.length; i++){
+                    report += '<li class="collection-item truncate"><div>'+element[i].name+'<a href="#!" class="secondary-content">'+element[i].name_tag+'</a></div></li>';
+                }
+                header();
+                var reportByTag = document.getElementById('reportByTag');
+                reportByTag.innerHTML += report;
+            });
+        }
+    });
+};
+
+function header(){
+    var reportByTag = document.getElementById('reportByTag');
+    reportByTag.innerHTML = '\
+        <li class="collection-header">\
+            <h5>Suas Tags</h5>\
+            <div class="row">\
+                <div class="input-field col s11" >\
+                    <select multiple id="selectTag" style="width: calc(100% - 66px); margin: 0 10px 0 0;">\
+                    </select>\
+                    <label>Selecione as tags desejadas</label>\
+                </div>\
+                <div class="input-field col s1">\
+                    <a onclick="searchTag();" class="waves-effect waves-light btn purple">\
+                        <i class="material-icons">search</i>\
+                    </a>\
+                </div>\
+            </div>\
+        </li>';
+    createSelect();
+}
+
+function createSelect(){
+    selectTag = '';
     $.ajax({
         method: "POST",
         url: "tags/ajaxTag",
         data: {},
         success: function(result){
             result = JSON.parse(result);
-            for (i = 0; i < result.length; i++) {
-                createTags(i, result[i].id_user, result[i].id_tag, result[i].name_tag)
+            for (i = 0; i < result.length; i++) {            
+                selectTag += '<option value="'+result[i].id_tag+'">'+result[i].name_tag+'</option>';
             }
+
+            $('#selectTag').html('');
+            $('#selectTag').append(selectTag);
+            $('select').formSelect();
         }
     });
-}
-
-function createTags(i, id_user, id_tag, name_tag){
-    $('#tagList').append(
-        '<li class="collection-item" id="li-'+index+'">'+
-            '<div class="row valign-wrapper">'+
-                '<div class="col s6 left">'+
-                    '<input type="text" class="tags" id_user="'+id_user+'" id="'+id_tag+'" value="'+name_tag+'">'+
-                '</div>'+
-                '<div class="col s6">'+
-                    '<a onclick="deleteTags('+id_tag+', '+index+')"; href="javascript:void(0)"><i class="iconColoRed material-icons right">delete</i></a>'+
-                    '<a onclick="editTags('+id_tag+');" href="javascript:void(0)"><i class="iconColor material-icons right ">edit</i></a>'+
-                '</div>'+
-            '</div>'+
-        '</li>'
-    );
-    index++;
-}
-
-function editTags(id_tag) {
-    $.ajax({
-        method: "POST",
-        url: "tags/ajaxUpdate",
-        data: {
-            id_tag: id_tag,
-            name_tag: $('#'+id_tag).val()
-        },
-        success: resp => {
-            if (resp == 'true') {
-                var text = 'Tag editada com sucesso!';
-            } else {
-                var text = 'Não foi possivel editada a tag!'
-            }
-            M.toast({html: text});
-        }
-    });
-}
-
-function deleteTags(id_tag, num) {
-    id_user = $('#'+id_tag).attr('id_user');
-    name_tag = $('#'+id_tag).val();
-
-    $.ajax({
-        method: "POST",
-        url: "tags/ajaxDelete",
-        data: {
-            id_tag:id_tag,
-            id_user:id_user  
-        },
-        success: function(result){
-            if (result == 'true') {
-                M.toast({html: 'Tag deletada com sucesso!'});
-                $('#li-'+num).remove();
-                index--;
-            } else {
-                M.toast({html: 'Não foi possivel deletar a tag!'});
-            }
-        }
-    });
-};
-
-
-$('#registerTag').click(function(){
-    var tag = $('#inputTag').val();
-    $('#inputTag').val('');
-    if(tag == ""){
-        M.toast({html: 'Por favor preencha o campo!'});
-    }else{
-        $.ajax({
-            method: "POST",
-            url: "tags/ajaxInsert",
-            data: {
-                name_tag: tag
-            },
-            success: function(result){ 
-                result = JSON.parse(result);
-                console.log(result) 
-
-                for (i = 0; i < result.length; i++) {
-                    createTags(i, result[i].id_user, result[i].id_tag, result[i].name_tag);
-                }
-                M.toast({html: 'Tag cadastrada com sucesso!'});
-            }
-        });
-    }
-});
-
-function createReportByTag(){
-    '<li class="collection-item truncate"><div>Nome do projeto<a href="#!" class="secondary-content"><i class="iconColor material-icons">send</i></a></div></li>';
 }
